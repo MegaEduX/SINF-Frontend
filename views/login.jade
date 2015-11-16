@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .login-wrapper.content-wrapper
+  #logo-big
+   img(src="images/logo.svg")#main-logo-big
+  form(action="/", method="POST").login-form
+    .input-group
+      span.input-group-addon
+        i.glyphicon.glyphicon-user
+      input(type="text" placeholder="Username").form-control
+    br
+    .input-group
+      span.input-group-addon
+        i.glyphicon.glyphicon-lock
+      input(type="password" placeholder="Password").form-control
+    br
+    .input-group
+      input(type="submit" value="Sign in").btn.btn-success 

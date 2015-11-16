@@ -1,3 +1,58 @@
+/* 
+ *	MAIN 
+ */
 body {
   padding-top: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.content-wrapper {
+	margin-top: 60px;
+}
+/* TOP NAVIGATION BAR */
+#main-logo-small {
+	margin-top: -6px;
+}
+.navbar {
+	border-radius: 0px !important;
+}
+.navbar-default .navbar-toggle {
+	border-color: transparent !important;
+}
+
+/* 
+ *	LOGIN 
+ */
+#logo-big {
+	text-align: center;
+}
+#main-logo-big {
+	width: 200px;
+	height: 200px;
+	margin: 18px 0px;
+}
+.login-wrapper {
+	text-align: center;
+}
+.login-wrapper .input-group {
+	width: 28%;
+}
+.login-form {
+	width: 287px;
+	display: block;
+	margin: 0 auto;
+}
+@media (min-width: 768px) {
+	.login-form {
+		width: 387px;
+	}
+}
+.login-form .input-group {
+	margin: 0 auto;
+	text-align: center;
+}
+.login-form .input-group input[type="submit"] {
+	float: left;
 }
