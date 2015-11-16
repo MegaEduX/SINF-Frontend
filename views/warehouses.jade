@@ -1,0 +1,29 @@
+extends layout
+
+mixin warehouse(wh)
+  tr
+    td #{wh.Nome}
+    td #{wh.Morada}
+    td #{wh.Localidade}
+    td
+      +actions(wh.Nome)
+
+mixin actions(warehouse)
+  a.btn.btn-default(href='/routes/' + warehouse, role='button') Routes
+  &nbsp;
+  a.btn.btn-default(href='/inventory/' + warehouse, role='button') Inventory
+  &nbsp;
+  a.btn.btn-default(href='/sections/' + warehouse, role='button') Sections
+
+block content
+  h1= title
+  table.table.table-stripped
+    thead
+      tr
+        th Name
+        th Address
+        th Location
+        th Action
+    tbody
+      each val in warehouses
+        +warehouse(val)
