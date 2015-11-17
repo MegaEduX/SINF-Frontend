@@ -16,29 +16,33 @@ mixin actions(cod)
     span.glyphicon.glyphicon-search(aria-hidden="true")
 
 block content
-  h1= title
-  p
-    b Customer
-    | : #{order.Entidade}
-  p
-    b Shipping Address
-    | : #{customer.Morada}
-  p
-    b Date
-    | : #{order.Data}
-  p
-    b Total
-    | : #{customer.Moeda} #{order.TotalMerc}
-  table.table.table-stripped
-    thead
-      tr
-        th Code
-        th Description
-        th Unit
-        th Quantity
-        th Price
-        th Discount
-        th 
-    tbody
-      each val in order.LinhasDoc
-        +linha(val)
+  .content-wrapper
+    h1= title
+    br
+    br
+    br
+    p
+      b Customer
+      | : #{order.Entidade}
+    p
+      b Shipping Address
+      | : #{customer.Morada}
+    p
+      b Date
+      | : #{order.Data}
+    p
+      b Total
+      | : #{customer.Moeda} #{order.TotalMerc}
+    table.datatable.table.table-stripped.table-bordered
+      thead
+        tr
+          th Code
+          th Description
+          th Unit
+          th Quantity
+          th Price
+          th Discount
+          th 
+      tbody
+        each val in order.LinhasDoc
+          +linha(val)

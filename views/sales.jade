@@ -15,15 +15,19 @@ mixin actions(sale)
   a.btn.btn-default(href='/items/' + sale, role='button') Items
 
 block content
-  h1= title
-  table.table.table-stripped
-    thead
-      tr
-        th Customer
-        th Date
-        th Total
-        th Series
-        th Action
-    tbody
-      each val in sales
-        +sale(val)
+  .content-wrapper
+    h1= title
+    br
+    br
+    br
+    table.datatable.table.table-stripped.table-bordered
+      thead
+        tr
+          th Customer
+          th Date
+          th Total
+          th Series
+          th Action
+      tbody
+        each val in sales
+          +sale(val)
