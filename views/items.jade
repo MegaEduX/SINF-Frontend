@@ -1,0 +1,44 @@
+extends layout
+
+mixin linha(s)
+  tr
+    td #{s.CodArtigo}
+    td #{s.DescArtigo}
+    td #{s.Unidade}
+    td #{s.Quantidade}
+    td #{s.PrecoUnitario}
+    td #{s.Desconto}
+    td
+      +actions(s.CodArtigo)
+
+mixin actions(cod)
+  a(href='#')
+    span.glyphicon.glyphicon-search(aria-hidden="true")
+
+block content
+  h1= title
+  p
+    b Customer
+    | : #{order.Entidade}
+  p
+    b Shipping Address
+    | : #{customer.Morada}
+  p
+    b Date
+    | : #{order.Data}
+  p
+    b Total
+    | : #{customer.Moeda} #{order.TotalMerc}
+  table.table.table-stripped
+    thead
+      tr
+        th Code
+        th Description
+        th Unit
+        th Quantity
+        th Price
+        th Discount
+        th 
+    tbody
+      each val in order.LinhasDoc
+        +linha(val)
