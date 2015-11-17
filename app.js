@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var items = require('./routes/items');
 var customers = require('./routes/customers');
 var routes = require('./routes/routes');
 var sales = require('./routes/sales');
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/items', items);
 app.use('/customers', customers);
 app.use('/routes', routes);
 app.use('/sales', sales);

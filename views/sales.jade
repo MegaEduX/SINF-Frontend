@@ -1,5 +1,29 @@
 extends layout
 
+mixin sale(s)
+  tr
+    td #{s.Entidade}
+    td #{s.Data}
+    td #{s.TotalMerc}
+    td #{s.Serie}
+    td
+      +actions(s.NumDoc)
+
+mixin actions(sale)
+  a.btn.btn-default(href='/routes/' + sale, role='button') Routes
+  &nbsp;
+  a.btn.btn-default(href='/items/' + sale, role='button') Items
+
 block content
   h1= title
-  p Welcome to #{title}
+  table.table.table-stripped
+    thead
+      tr
+        th Customer
+        th Date
+        th Total
+        th Series
+        th Action
+    tbody
+      each val in sales
+        +sale(val)
