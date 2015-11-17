@@ -9,21 +9,23 @@ mixin warehouse(wh)
       +actions(wh.Nome)
 
 mixin actions(warehouse)
-  a.btn.btn-default(href='/routes/' + warehouse, role='button') Routes
-  &nbsp;
-  a.btn.btn-default(href='/inventory/' + warehouse, role='button') Inventory
-  &nbsp;
-  a.btn.btn-default(href='/sections/' + warehouse, role='button') Sections
+  a.btn.btn-default(href='/routes/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Routes')  
+    span.glyphicon.glyphicon-random(aria-hidden='true')
+  a.btn.btn-default(href='/inventory/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Inventory')
+    span.glyphicon.glyphicon-list-alt(aria-hidden='true')
+  a.btn.btn-default(href='/sections/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Sections')
+    span.glyphicon.glyphicon-th-large(aria-hidden='true')
 
 block content
-  h1= title
-  table.table.table-stripped
-    thead
-      tr
-        th Name
-        th Address
-        th Location
-        th Action
-    tbody
-      each val in warehouses
-        +warehouse(val)
+  .content-wrapper
+    h1= title
+    table.datatable.table.table-stripped.table-bordered
+      thead
+        tr
+          th Name
+          th Address
+          th Location
+          th Action
+      tbody
+        each val in warehouses
+          +warehouse(val)

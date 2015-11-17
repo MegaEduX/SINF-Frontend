@@ -11,6 +11,9 @@ a {
 .content-wrapper {
 	margin-top: 60px;
 }
+.content-wrapper h1 {
+	margin-bottom: -32px;
+}
 /* TOP NAVIGATION BAR */
 #main-logo-small {
 	margin-top: -6px;
@@ -55,4 +58,16 @@ a {
 }
 .login-form .input-group input[type="submit"] {
 	float: left;
+}
+
+/*
+ *	DATATABLES
+ */
+.datatable a {
+	padding: 8px 12px;
+	margin-right: 2px;
+}
+
+.pagination li a {
+	padding: 8px 16px;
 }
