@@ -1,5 +1,5 @@
 extends layout
-
+include templates/navbar
 mixin sale(s)
   tr
     td #{s.Entidade}
@@ -10,24 +10,24 @@ mixin sale(s)
       +actions(s.NumDoc)
 
 mixin actions(sale)
-  a.btn.btn-default(href='/routes/' + sale, role='button') Routes
-  &nbsp;
-  a.btn.btn-default(href='/items/' + sale, role='button') Items
+  a.btn.btn-default(href='/routes/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Routes')  
+    span.glyphicon.glyphicon-random(aria-hidden='true')
+  a.btn.btn-default(href='/items/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Items')  
+    span.glyphicon.glyphicon-list-alt(aria-hidden='true')
 
 block content
-  .content-wrapper
-    h1= title
-    br
-    br
-    br
-    table.datatable.table.table-stripped.table-bordered
-      thead
-        tr
-          th Customer
-          th Date
-          th Total
-          th Series
-          th Action
-      tbody
-        each val in sales
-          +sale(val)
+  +nav(title)
+  div.container
+    .content-wrapper
+      h1= title
+      table.datatable.table.table-stripped.table-bordered
+        thead
+          tr
+            th Customer
+            th Date
+            th Total
+            th Series
+            th Action
+        tbody
+          each val in sales
+            +sale(val)
