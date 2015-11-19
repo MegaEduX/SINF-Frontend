@@ -32,13 +32,6 @@ mixin nav(active)
             li
               a(href='/warehouses') Warehouses
 
-          if (active == 'Routes')
-            li.active
-              a(href='/routes') Routes
-          else
-            li
-              a(href='/routes') Routes
-
           if (active == 'Customers')    
             li.active
               a(href='/customers') Customers
@@ -48,4 +41,3 @@ mixin nav(active)
         ul.nav.navbar-nav.navbar-right
           li
             a(href='/login') Log In
-
