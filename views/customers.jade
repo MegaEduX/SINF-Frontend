@@ -5,6 +5,7 @@ mixin customer(c)
   tr
     td #{c.CodCliente}
     td #{c.NomeCliente}
+    td #{c.Morada}
     td #{c.NumContribuinte}
     td #{c.Moeda}
     td
@@ -26,6 +27,7 @@ block content
           tr
             th Code
             th Name
+            th Address
             th Tax ID
             th Currency
             th Action
