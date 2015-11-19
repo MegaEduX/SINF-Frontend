@@ -12,7 +12,7 @@ a {
 	margin-top: 60px;
 }
 .content-wrapper h1 {
-	margin-bottom: -32px;
+	margin-bottom: 0px;
 }
 /* TOP NAVIGATION BAR */
 #main-logo-small {
@@ -67,7 +67,38 @@ a {
 	padding: 8px 12px;
 	margin-right: 2px;
 }
-
 .pagination li a {
 	padding: 8px 16px;
 }
+.dataTables_wrapper .col-sm-6:nth-child(2) {
+	float: right;
+}
+.dataTables_wrapper .glyphicon-search {
+	right: 19px;
+    top: 7px;
+    position: absolute;
+    float: right;
+    background-color: white;
+    padding: 4px;
+}
+.dataTables_filter input[type="search"] {
+	width: 300px !important;
+}
+
+/*
+ *	ROUTES
+ */
+ .routes-controls {
+ 	margin-top: 12px;
+ }
+ .routes-controls .input-group {
+ 	float: left;
+ 	margin-right: 10px;
+ 	margin-top: 2px;
+ } 
+.routes-controls input, .routes-controls select {
+	height: 33px !important;
+}
+ #datetimepicker {
+ 	width: 160px;
+ }

@@ -1,34 +1,52 @@
 extends layout
 include templates/navbar
 
-mixin sale(s)
+mixin route(s)
 	tr
-		td #{s.Entidade}
-		td #{s.Data}
-		td #{s.TotalMerc}
-		td #{s.Serie}
+		td #{s.Name}
+		td #{s.Costumers}
+		td #{s.Warehouse}
+		td #{s.Workers}
+		td #{s.Date}
 		td
-		+actions(s.NumDoc)
+			+actions(s.ID)
 
-mixin actions(sale)
-	a.btn.btn-default(href='/routes/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Routes')  
+mixin actions(route)
+	a.btn.btn-default(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')  
 		span.glyphicon.glyphicon-random(aria-hidden='true')
-	a.btn.btn-default(href='/items/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Items')  
-		span.glyphicon.glyphicon-list-alt(aria-hidden='true')
 
 block content
 	+nav(title)
-		div.container
-			.content-wrapper
-				h1= title
-				table.datatable.table.table-stripped.table-bordered
-					thead
-						tr
-							th Customer
-							th Date
-							th Total
-							th Series
-							th Action
-					tbody
-						each val in sales
-							+sale(val)
+	div.container
+		.content-wrapper.routes-wrapper
+			h1= title
+			.routes-controls
+				#datetimepicker.input-group.date
+					input(type="text").form-control.input-sm
+					span.input-group-addon.input-sm
+						i.glyphicon.glyphicon-calendar
+
+				.input-group
+					select.form-control.input-sm
+						option(value="1") Warehouse1
+						option(value="2") Warehouse2
+						option(value="3") Warehouse3
+
+				.input-group
+					select.form-control.input-sm
+						option(value="1") Worker1
+						option(value="2") Worker2
+						option(value="3") Worker3
+
+			table.datatable.table.table-stripped.table-bordered
+				thead
+					tr
+						th Name
+						th Costumers
+						th Warehouse
+						th Workers
+						th Date
+						th Action
+				tbody
+					each val in routes
+						+route(val)
