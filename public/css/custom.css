@@ -63,6 +63,9 @@ a {
 /*
  *	DATATABLES
  */
+.datatable {
+	width: 100% !important;
+}
 .datatable a {
 	padding: 8px 12px;
 	margin-right: 2px;
@@ -73,7 +76,7 @@ a {
 .dataTables_wrapper .col-sm-6:nth-child(2) {
 	float: right;
 }
-.dataTables_wrapper .glyphicon-search {
+.dataTables_filter .glyphicon-search {
 	right: 19px;
     top: 7px;
     position: absolute;
@@ -101,4 +104,7 @@ a {
 }
  #datetimepicker {
  	width: 160px;
+ }
+ .routes-wrapper .dataTables_wrapper .row:nth-child(1) {
+
  }

@@ -4,12 +4,15 @@ $(document).ready(function() {
 		columnDefs: [
    			{ width: 130, orderable: false, searchable: false, targets: -1 }
 		],
-		responsive: true
+		responsive: true,
+		oLanguage: {
+    		sSearch: '<span class="glyphicon glyphicon-search"></span>'
+  		}
 	});
 	
 	// search input fixes
-	$(".dataTables_filter").html($(".dataTables_filter").html().replace("Search:", ""));
-	$(".dataTables_filter").html($(".dataTables_filter").html() + '<span class="glyphicon glyphicon-search"></span>');
+	//$(".dataTables_filter").html($(".dataTables_filter").html().replace("Search:", ""));
+	//$(".dataTables_filter").html($(".dataTables_filter").html() + '<span class="glyphicon glyphicon-search"></span>');
 	
 	// tooltips
 	$('[data-toggle="tooltip"]').tooltip()
