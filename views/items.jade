@@ -10,7 +10,7 @@ mixin linha(s)
     td #{s.Quantidade}
     td #{s.PrecoUnitario}
     td #{s.Desconto}
-    td #{s.(PrecoUnitario-s.Desconto)*s.Quantidade}
+    td #{(s.PrecoUnitario-s.Desconto)*s.Quantidade}
     td
       +actions(s.CodArtigo)
 
