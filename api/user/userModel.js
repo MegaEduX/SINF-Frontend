@@ -11,7 +11,7 @@ var UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
   level: {
     type: String,
     enum: ["worker", "admin"],
