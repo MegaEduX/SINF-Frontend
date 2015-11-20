@@ -29,15 +29,15 @@ router.get('/:id', function(req, res, next) {
             console.log("Returning " + obj + "...");
 
             getCustomerInformation(req.params.id, function(ci) {
-                res.render('items', { title: 'Items', order: obj, customer: ci });
+                res.render('items', { title: 'Sale items', order: obj, customer: ci });
             }, function(error) {
 
             });
         } else {
-            var testObj = {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]};
+            var testObj = {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]};
 
             getCustomerInformation(req.params.id, function(ci) {
-                res.render('items', { title: 'Items', order: testObj, customer: ci });
+                res.render('items', { title: 'Sale items', order: testObj, customer: ci });
             }, function(error) {
 
             });
