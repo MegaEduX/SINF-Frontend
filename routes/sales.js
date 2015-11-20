@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
             res.render('sales', { title: 'Sales', sales: obj });
         } else {
             var testObj = [
-                {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12}
+                {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "DataEntrega": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12}
             ];
 
             res.render('sales', { title: 'Sales', sales: testObj });

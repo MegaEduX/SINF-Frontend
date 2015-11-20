@@ -12,9 +12,7 @@ mixin customer(c)
       +actions(c.CodCliente)
 
 mixin actions(customer)
-  a.btn.btn-default(href='/routes/' + customer, role='button' data-toggle='tooltip' data-placement='bottom' title='Routes')  
-    span.glyphicon.glyphicon-random(aria-hidden='true')
-  a.btn.btn-default(href='/items/' + customer, role='button' data-toggle='tooltip' data-placement='bottom' title='Items')  
+  a.btn.btn-default(href='/items/' + customer, role='button' data-toggle='tooltip' data-placement='bottom' title='Orders')
     span.glyphicon.glyphicon-list-alt(aria-hidden='true')
 
 block content
