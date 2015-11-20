@@ -3,9 +3,10 @@ var _ = require('lodash');
 
 
 var users = [
-  {username: 'Worker1', password: 'test'},
-  {username: 'Worker2', password: 'test'},
-  {username: 'Worker3', password: 'test'}
+  {username: 'Worker1', password: 'test', level: 'worker'},
+  {username: 'Worker2', password: 'test', level: 'worker'},
+  {username: 'Worker3', password: 'test'},
+  {username: 'Admin', password: 'test', level: 'admin'}
 ];
 
 var createDoc = function(model, doc) {

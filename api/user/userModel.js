@@ -8,16 +8,21 @@ var UserSchema = new Schema({
     required: true,
     unique: true
   },
-
   password: {
     type: String,
     required: true
   }
+  level: {
+    type: String,
+    enum: ["worker", "admin"],
+    default: "worker",
+    required: true
+  }
+
 });
 
 UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) return next();
-
 
   this.password = this.encryptPassword(this.password);
   next();
