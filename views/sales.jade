@@ -5,6 +5,7 @@ mixin sale(s)
   tr
     td #{s.Entidade}
     td #{s.Data}
+    td #{s.DataEntrega}
     td #{s.TotalMerc}
     td #{s.Serie}
     td
@@ -25,7 +26,8 @@ block content
         thead
           tr
             th Customer
-            th Date
+            th Sale Date
+            th Shipping Date
             th Total
             th Series
             th Action
