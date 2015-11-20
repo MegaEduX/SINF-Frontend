@@ -5,15 +5,12 @@ mixin sale(s)
   tr
     td #{s.Entidade}
     td #{s.Data}
-    td #{s.DataEntrega}
     td #{s.TotalMerc}
     td #{s.Serie}
     td
       +actions(s.NumDoc)
 
 mixin actions(sale)
-  a.btn.btn-default(href='/routes/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Routes')  
-    span.glyphicon.glyphicon-random(aria-hidden='true')
   a.btn.btn-default(href='/items/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Items')  
     span.glyphicon.glyphicon-list-alt(aria-hidden='true')
 
@@ -27,7 +24,6 @@ block content
           tr
             th Customer
             th Sale Date
-            th Shipping Date
             th Total
             th Series
             th Action

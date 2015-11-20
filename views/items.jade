@@ -5,10 +5,12 @@ mixin linha(s)
   tr
     td #{s.CodArtigo}
     td #{s.DescArtigo}
+    td #{s.DataEntrega}
     td #{s.Unidade}
     td #{s.Quantidade}
     td #{s.PrecoUnitario}
     td #{s.Desconto}
+    td #{s.PrecoUnitario-s.Desconto}
     td
       +actions(s.CodArtigo)
 
@@ -39,10 +41,12 @@ block content
           tr
             th Code
             th Description
+            th Shipping Date
             th Unit
             th Quantity
             th Price
             th Discount
+            th Total
             th 
         tbody
           each val in order.LinhasDoc
