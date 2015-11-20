@@ -5,7 +5,8 @@ var config = {
   },
   seedData: true,
   db: {
-    url: 'mongodb://localhost/sinf'
+    //	url: 'mongodb://localhost/sinf'
+    url: (process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://localhost/sinf')
   }
 };
 
