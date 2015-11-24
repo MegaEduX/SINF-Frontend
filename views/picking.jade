@@ -1,21 +1,22 @@
 extends layout
 include templates/navbar
 
+script(src='/js/picking.js')
+
 mixin linha(s)
   tr
     td #{s.CodArtigo}
+    td #{cod-documento}
     td #{s.DescArtigo}
     td #{s.DataEntrega}
     td #{s.Unidade}
     td #{s.Quantidade}
     td #{s.PrecoUnitario}
-    td #{s.Desconto}
-    td #{(s.PrecoUnitario-s.Desconto)*s.Quantidade}
     td
       +actions(s.CodArtigo)
 
 mixin actions(cod)
-  a(href='#', onclick='addToShoppingCart(#{order.NumDoc}, "#{cod}"); return false;')
+  a(href='#', onclick='removeFromShoppingCart("#{cod}"); return false;')
     span.glyphicon.glyphicon-plus(aria-hidden="true")
 
 block content
@@ -24,30 +25,15 @@ block content
     .content-wrapper
       h1= title
       br
-      p
-        b Customer
-        | : #{order.Entidade}
-      p
-        b Shipping Address
-        | : #{customer.Morada}
-      p
-        b Date
-        | : #{order.Data}
-      p
-        b Total
-        | : #{customer.Moeda} #{order.TotalMerc}
       table.datatable.table.table-stripped.table-bordered
         thead
           tr
             th Code
-            th Description
+            th Order
             th Shipping Date
             th Unit
             th Quantity
-            th Price
-            th Discount
-            th Total
             th
-        tbody
-          each val in order.LinhasDoc
-            +linha(val)
+        tbody(id='pickingTable')
+          tr
+            td Building data...

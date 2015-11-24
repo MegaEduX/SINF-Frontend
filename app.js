@@ -11,9 +11,11 @@ var login = require('./routes/login');
 var users = require('./routes/users');
 var items = require('./routes/items');
 var customers = require('./routes/customers');
+var route = require('./routes/route');
 var routes = require('./routes/routes');
 var sales = require('./routes/sales');
 var warehouses = require('./routes/warehouses');
+var picking = require('./routes/picking');
 
 var api = require('./api/api');
 
@@ -43,9 +45,11 @@ app.use('/login', login);
 app.use('/users', users);
 app.use('/items', items);
 app.use('/customers', customers);
+app.use('/route', route);
 app.use('/routes', routes);
 app.use('/sales', sales);
 app.use('/warehouses', warehouses);
+app.use('/picking', picking);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
