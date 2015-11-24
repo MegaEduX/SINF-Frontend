@@ -11,7 +11,7 @@ function addToShoppingCart(item) {
 }
 
 function createCartCookie(initialItem) {
-    Cookies.setJSON(cartCookieName, [initialItem]);
+    Cookies.set(cartCookieName, [initialItem]);
 }
 
 function addToCartCookie(item) {
@@ -19,7 +19,7 @@ function addToCartCookie(item) {
 
     current.push(item);
 
-    Cookies.setJSON(cartCookieName, current);
+    Cookies.set(cartCookieName, current);
 }
 
 function removeFromCartCookie(item) {
