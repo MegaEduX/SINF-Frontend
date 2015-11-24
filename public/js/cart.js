@@ -19,7 +19,7 @@ function addToCartCookie(item) {
 
     current.push(item);
 
-    Cookies.set(cartCookieName, current);
+    Cookies.set(cartCookieName, _.uniq(current));
 }
 
 function removeFromCartCookie(item) {
