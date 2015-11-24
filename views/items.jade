@@ -15,8 +15,8 @@ mixin linha(s)
       +actions(s.CodArtigo)
 
 mixin actions(cod)
-  a(href='#')
-    span.glyphicon.glyphicon-search(aria-hidden="true")
+  a(href='#', onclick='addToShoppingCart(#{cod}); return false;')
+    span.glyphicon.glyphicon-plus(aria-hidden="true")
 
 block content
   +nav(title)
@@ -47,7 +47,7 @@ block content
             th Price
             th Discount
             th Total
-            th 
+            th
         tbody
           each val in order.LinhasDoc
             +linha(val)
