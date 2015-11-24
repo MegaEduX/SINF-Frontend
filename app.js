@@ -43,6 +43,7 @@ app.use('/login', login);
 app.use('/users', users);
 app.use('/items', items);
 app.use('/customers', customers);
+app.use('/route', route);
 app.use('/routes', routes);
 app.use('/sales', sales);
 app.use('/warehouses', warehouses);
