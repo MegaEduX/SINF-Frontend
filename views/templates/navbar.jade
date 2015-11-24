@@ -1,6 +1,6 @@
 mixin nav(active)
   .navbar.navbar-default.navbar-fixed-top(role='navigation')
-    .container 
+    .container
       .navbar-header
         button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
           span.sr-only Toggle navigation
@@ -10,18 +10,18 @@ mixin nav(active)
         a.navbar-brand(href='/')
           img(src="/images/logo-small.svg")#main-logo-small
       .navbar-collapse.collapse
-        ul.nav.navbar-nav           
-          if (active == 'Home') 
+        ul.nav.navbar-nav
+          if (active == 'Home')
             li.active
               a(href='/') Home
           else
             li
               a(href='/') Home
 
-          if (active == 'Sales') 
+          if (active == 'Sales')
             li.active
-              a(href='/sales') Sales 
-          else 
+              a(href='/sales') Sales
+          else
             li
               a(href='/sales') Sales
 
@@ -32,12 +32,14 @@ mixin nav(active)
             li
               a(href='/warehouses') Warehouses
 
-          if (active == 'Customers')    
+          if (active == 'Customers')
             li.active
               a(href='/customers') Customers
           else
             li
               a(href='/customers') Customers
         ul.nav.navbar-nav.navbar-right
+          li
+            a(href='#') Route Items
           li
             a(href='/login') Log In
