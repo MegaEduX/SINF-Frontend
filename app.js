@@ -11,6 +11,7 @@ var login = require('./routes/login');
 var users = require('./routes/users');
 var items = require('./routes/items');
 var customers = require('./routes/customers');
+var route = require('./routes/route');
 var routes = require('./routes/routes');
 var sales = require('./routes/sales');
 var warehouses = require('./routes/warehouses');
