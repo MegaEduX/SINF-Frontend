@@ -15,6 +15,7 @@ var route = require('./routes/route');
 var routes = require('./routes/routes');
 var sales = require('./routes/sales');
 var warehouses = require('./routes/warehouses');
+var picking = require('./routes/picking');
 
 var api = require('./api/api');
 
@@ -48,6 +49,7 @@ app.use('/route', route);
 app.use('/routes', routes);
 app.use('/sales', sales);
 app.use('/warehouses', warehouses);
+app.use('/picking', picking);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

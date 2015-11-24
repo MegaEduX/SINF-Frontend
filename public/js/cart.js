@@ -2,22 +2,26 @@
 
 var cartCookieName = 'itemsCart';
 
-function addToShoppingCart(item) {
+function addToShoppingCart(doc, item) {
     if (Cookies.getJSON(cartCookieName)) {
-        addToCartCookie(item);
+        addToCartCookie(doc, item);
     } else {
-        createCartCookie(item);
+        createCartCookie(doc, item);
     }
 }
 
-function createCartCookie(initialItem) {
-    Cookies.set(cartCookieName, [initialItem]);
+function _cartMakePart(d, i) {
+    return { order: d, item: i };
 }
 
-function addToCartCookie(item) {
-    var current = Cookies.getJSON(cartCookieName);
+function createCartCookie(document, initialItem) {
+    Cookies.set(cartCookieName, [_cartMakePart(document, initialItem)]);
+}
 
-    current.push(item);
+function addToCartCookie(document, item) {
+    var current = Cookies.getJSON(cartCookieName);
+    
+    current.push(_cartMakePart(document, item));
 
     Cookies.set(cartCookieName, _.uniq(current));
 }

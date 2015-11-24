@@ -39,7 +39,11 @@ mixin nav(active)
             li
               a(href='/customers') Customers
         ul.nav.navbar-nav.navbar-right
-          li
-            a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
+          if (active == 'Picking')
+            li.active
+              a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
+          else
+            li
+              a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
           li
             a(href='/login') Log In

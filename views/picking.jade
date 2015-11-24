@@ -1,0 +1,39 @@
+extends layout
+include templates/navbar
+
+script(src='/js/picking.js')
+
+mixin linha(s)
+  tr
+    td #{s.CodArtigo}
+    td #{cod-documento}
+    td #{s.DescArtigo}
+    td #{s.DataEntrega}
+    td #{s.Unidade}
+    td #{s.Quantidade}
+    td #{s.PrecoUnitario}
+    td
+      +actions(s.CodArtigo)
+
+mixin actions(cod)
+  a(href='#', onclick='removeFromShoppingCart("#{cod}"); return false;')
+    span.glyphicon.glyphicon-plus(aria-hidden="true")
+
+block content
+  +nav(title)
+  div.container
+    .content-wrapper
+      h1= title
+      br
+      table.datatable.table.table-stripped.table-bordered
+        thead
+          tr
+            th Code
+            th Order
+            th Shipping Date
+            th Unit
+            th Quantity
+            th
+        tbody(id='pickingTable')
+          tr
+            td Building data...
