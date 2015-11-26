@@ -1,0 +1,26 @@
+extends layout
+include templates/navbar
+mixin inventory(i)
+    tr
+        td #{i.Artigo}
+        td #{i.Lote}
+        td #{i.Stock}
+        td #{i.Localizacao}
+
+block content
+    script(src='/js/inventory.js')
+    +nav(title)
+    div.container
+        .content-wrapper
+            h1= title
+
+            table.datatable.table.table-stripped.table-bordered
+                thead
+                    tr
+                        th Artigo
+                        th Lote
+                        th Stock
+                        th Localizacao
+                tbody
+                    each val in warehouses
+                        +inventory(val)
