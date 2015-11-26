@@ -15,7 +15,7 @@ mixin linha(s)
       +actions(s.CodArtigo)
 
 mixin actions(cod)
-  a(href='#', onclick='addToShoppingCart(#{order.NumDoc}, "#{cod}"); return false;')
+  a(id='#{cod}' name='addButton' href='#', onclick='addToShoppingCart(#{order.NumDoc}, "#{cod}"); $(\'\##{cod}\').hide(); return false;')
     span.glyphicon.glyphicon-plus(aria-hidden="true")
 
 block content
