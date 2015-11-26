@@ -4,7 +4,7 @@ var router = express.Router();
 var request = require('request');
 
 function getCustomerInformation(id, success, error) {
-    request('http://this-request-will-fail/', function (error, response, body) {
+    request(process.env.PRIMAVERA_URI . 'Customers/' . id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
@@ -22,7 +22,7 @@ function getCustomerInformation(id, success, error) {
 router.get('/:id', function(req, res, next) {
     //  req.params.id
 
-    request('http://this-request-will-fail/', function (error, response, body) {
+    request(process.env.PRIMAVERA_URI . '/Sales/' . req.params.id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 

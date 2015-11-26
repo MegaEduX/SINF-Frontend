@@ -1,6 +1,8 @@
 extends layout
 include templates/navbar
 
+script(src='/js/items.js')
+
 mixin linha(s)
   tr
     td #{s.CodArtigo}
@@ -10,7 +12,7 @@ mixin linha(s)
     td #{s.Quantidade}
     td #{s.PrecoUnitario}
     td #{s.Desconto}
-    td #{(s.PrecoUnitario-s.Desconto)*s.Quantidade}
+    td #{(s.PrecoUnitario - s.Desconto) * s.Quantidade}
     td
       +actions(s.CodArtigo)
 
