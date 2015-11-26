@@ -29,10 +29,10 @@ function existsInCartCookie(document, initialItem) {
     var c = Cookies.getJSON(cartCookieName);
 
     for (var i = 0, len = c.length; i < len; i++)
-        if (c[i].order == document || c[i].item == initialItem)
-            return false;
+        if (c[i].order == document && c[i].item == initialItem)
+            return true;
 
-    return true;
+    return false;
 }
 
 function createCartCookie(document, initialItem) {
