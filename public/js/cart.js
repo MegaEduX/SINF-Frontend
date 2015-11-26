@@ -29,7 +29,7 @@ function existsInCartCookie(document, initialItem) {
     var c = Cookies.getJSON(cartCookieName);
 
     for (var i = 0, len = c.length; i < len; i++)
-        if (i.order == document || i.item == item)
+        if (c[i].order == document || c[i].item == initialItem)
             return false;
 
     return true;
