@@ -2,6 +2,15 @@
 
 var cartCookieName = 'itemsCart';
 
+function removeFromArray(array, value) {
+    var idx = array.indexOf(value);
+
+    if (idx !== -1)
+        array.splice(idx, 1);
+
+    return array;
+}
+
 function addToShoppingCart(doc, item) {
     if (Cookies.getJSON(cartCookieName)) {
         addToCartCookie(doc, item);
@@ -16,6 +25,16 @@ function _cartMakePart(d, i) {
     return { order: d, item: i };
 }
 
+function existsInCartCookie(document, initialItem) {
+    var c = Cookies.getJSON(cartCookieName);
+
+    for (var i = 0, len = c.length; i < len; i++)
+        if (i.order == document || i.item == item)
+            return false;
+
+    return true;
+}
+
 function createCartCookie(document, initialItem) {
     Cookies.set(cartCookieName, [_cartMakePart(document, initialItem)]);
 }
@@ -23,15 +42,27 @@ function createCartCookie(document, initialItem) {
 function addToCartCookie(document, item) {
     var current = Cookies.getJSON(cartCookieName);
 
-    current.push(_cartMakePart(document, item));
+    if (!existsInCartCookie(document, item))
+        current.push(_cartMakePart(document, item));
 
-    Cookies.set(cartCookieName, _.uniq(current));
+    Cookies.set(cartCookieName, current);
 }
 
 function removeFromCartCookie(item) {
     //   tbd
 
-    updateCounter();
+    var c = Cookies.getJSON(cartCookieName);
+
+    for (var i = 0, len = c.length; i < len; i++)
+        if (i.order == document || i.item == item) {
+            removeFromArray(c, item);
+
+            Cookies.set(cartCookieName, c);
+
+            updateCounter();
+
+            return;
+        }
 }
 
 function updateCounter() {
