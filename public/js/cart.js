@@ -49,13 +49,11 @@ function addToCartCookie(document, item) {
 }
 
 function removeFromCartCookie(item) {
-    //   tbd
-
     var c = Cookies.getJSON(cartCookieName);
 
     for (var i = 0, len = c.length; i < len; i++)
-        if (i.order == document || i.item == item) {
-            removeFromArray(c, item);
+        if (c[i].order == document || c[i].item == item) {
+            removeFromArray(c[i], item);
 
             Cookies.set(cartCookieName, c);
 
