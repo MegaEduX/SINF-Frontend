@@ -1,8 +1,6 @@
 extends layout
 include templates/navbar
 
-script(src='/js/items.js')
-
 mixin linha(s)
   tr
     td #{s.CodArtigo}
@@ -21,6 +19,7 @@ mixin actions(cod)
     span.glyphicon.glyphicon-plus(aria-hidden="true")
 
 block content
+  script(src='/js/items.js')
   +nav(title)
   div.container
     .content-wrapper
