@@ -5,6 +5,6 @@ $(document).ready(function() {
 		docId = docId[docId.length - 1];
 
 		if (existsInCartCookie(docId, $(obj).attr('id')))
-			obj.hide();
+			$(obj).hide();
 	});
 });

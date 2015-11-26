@@ -5,15 +5,12 @@ script(src='/js/picking.js')
 
 mixin linha(s)
   tr
-    td #{s.CodArtigo}
-    td #{cod-documento}
-    td #{s.DescArtigo}
-    td #{s.DataEntrega}
-    td #{s.Unidade}
-    td #{s.Quantidade}
-    td #{s.PrecoUnitario}
-    td
-      +actions(s.CodArtigo)
+    td 
+      input(type='checkbox')
+    td -- TBD --
+    td -- TBD --
+    td #{s.item}
+    td #{s.order}
 
 mixin actions(cod)
   a(href='#', onclick='removeFromShoppingCart("#{cod}"); return false;')
@@ -25,15 +22,14 @@ block content
     .content-wrapper
       h1= title
       br
-      table.datatable.table.table-stripped.table-bordered
+      table.table.table-stripped.table-bordered
         thead
           tr
+            th Done
+            th Warehouse
+            th Section
             th Code
-            th Order
-            th Shipping Date
-            th Unit
             th Quantity
-            th
         tbody(id='pickingTable')
-          tr
-            td Building data...
+          each val in toPick
+            +linha(val)
