@@ -17,6 +17,18 @@ exports.decodeToken = function() {
   };
 };
 
+exports.checkToken = function() {
+  return function(req, res, next) {
+    // look for a tooken in cookies
+    if (req.cookies.access_token != undefined) {
+      req.headers.authorization = 'Bearer ' + req.cookies.access_token;
+    }
+    // check token
+    // if invalid, send 401
+    checkToken(req, res, next);
+  }
+}
+
 exports.getFreshUser = function() {
   return function(req, res, next) {
     User.findById(req.user._id)

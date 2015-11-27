@@ -1,13 +1,16 @@
 var express = require('express');
+var checkToken = require('../api/auth/auth').checkToken;
 var router = express.Router();
 
 var request = require('request');
 
-router.get('/', function(req, res, next) {
+router.get('/', checkToken(), function(req, res, next) {
+    
     request(process.env.PRIMAVERA_URI + 'Customers', function (error, response, body) {
+        console.log(req.cookies.access_token);
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
-
+            
             console.log("Returning " + obj + "...");
 
             res.render('customers', { title: 'Customers', customers: obj });

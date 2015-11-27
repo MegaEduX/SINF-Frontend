@@ -21,7 +21,7 @@ function getProductInformation(id, success, error) {
 
 router.get('/:id', function(req, res, next) {
 
-    request(process.env.PRIMAVERA_URI + '/Warehouses/' + req.params.id, function (error, response, body) {
+    request(process.env.PRIMAVERA_URI + 'Warehouses/' + req.params.id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 

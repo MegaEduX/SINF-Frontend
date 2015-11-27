@@ -62,7 +62,11 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
+app.use(function(err, req, res, next) {
+  if (err.status == 401) {
+    res.redirect('/login');
+  }
+});
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
