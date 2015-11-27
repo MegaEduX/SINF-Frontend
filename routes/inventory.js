@@ -12,7 +12,7 @@ function getProductInformation(id, success, error) {
 
             success(obj);
         } else {
-            var testObj = {"DescArtigo": "Secretária"};
+            var testObj = {"DescArtigo": "Secretaria"};
 
             success(testObj);
         }
@@ -20,13 +20,18 @@ function getProductInformation(id, success, error) {
 }
 
 router.get('/:id', function(req, res, next) {
-    //  req.params.id
 
     request(process.env.PRIMAVERA_URI + '/Warehouses/' + req.params.id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
             console.log("Returning " + obj + "...");
+
+            for (var i = 0; i < obj.length; i++) {
+                getProductInformation(obj["Artigo"], function(pInf) {
+                    obj[i]["DescArtigo"] = pInf["DescArtigo"];
+                }, function(error) { });
+            }
 
             res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: obj });
 
@@ -35,15 +40,10 @@ router.get('/:id', function(req, res, next) {
                 {"Artigo": "A0002", "Lote" : "LT01", "Stock": "46", "Localizacao": "A2.A.001"}
             ];
 
-            var completeObj = [];
-            console.info(testObj);
-            console.info(testObj.length);
+
             for (var i = 0; i < testObj.length; i++) {
                 getProductInformation(testObj["Artigo"], function(pInf) {
-                    console.info(testObj["Artigo"]);
-                    console.info(pInf);
-                    testObj[i]["DescArtigo"] = pInf.DescArtigo;
-                    console.info(testObj["DescArtigo"]);
+                    testObj[i]["DescArtigo"] = pInf["DescArtigo"];
                 }, function(error) { });
                 }
             res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });
