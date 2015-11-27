@@ -42,7 +42,7 @@ router.get('/:id', function(req, res, next) {
                 getProductInformation(testObj["Artigo"], function(pInf) {
                     console.info(testObj["Artigo"]);
                     console.info(pInf);
-                    testObj["DescArtigo"] = pInf;
+                    testObj[i]["DescArtigo"] = pInf.DescArtigo;
                     console.info(testObj["DescArtigo"]);
                 }, function(error) { });
                 }
