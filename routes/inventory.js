@@ -3,6 +3,21 @@ var router = express.Router();
 
 var request = require('request');
 
+function getProductInformation(id, success, error) {
+    request(process.env.PRIMAVERA_URI + 'Products/' + id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var obj = JSON.parse(body);
+
+            console.log("Returning " + obj + "...");
+
+            success(obj);
+        } else {
+            var testObj = {"DescArtigo": "Secretária"};
+
+            success(testObj);
+        }
+    });
+}
 
 router.get('/:id', function(req, res, next) {
     //  req.params.id
@@ -13,12 +28,18 @@ router.get('/:id', function(req, res, next) {
 
             console.log("Returning " + obj + "...");
 
-            res.render('inventory', { title: 'Inventory', inventory: obj });
+            res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: obj });
 
         } else {
             var testObj = [
                 {"Artigo": "A0002", "Lote" : "LT01", "Stock": "46", "Localizacao": "A2.A.001"}
             ];
+
+            getProductInformation(req.params.id, function(ci) {
+                res.render('items', { title: 'Sale items', order: testObj, customer: ci });
+            }, function(error) {
+
+            });
 
             res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });
         }
