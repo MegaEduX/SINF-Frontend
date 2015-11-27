@@ -5,7 +5,7 @@ var config = {
   },
   seedData: true,
   db: {
-    //	url: 'mongodb://localhost/sinf'
+    	//url: 'mongodb://heroku_n275hh7p:fs6oc1uqticprchfc58q8h89o9@ds033097.mongolab.com:33097/heroku_n275hh7p'
     url: (process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://localhost/sinf')
   }
 };

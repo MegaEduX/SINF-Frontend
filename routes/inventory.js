@@ -28,7 +28,7 @@ router.get('/:id', function(req, res, next) {
             console.log("Returning " + obj + "...");
 
             for (var i = 0; i < obj.length; i++) {
-                getProductInformation(obj["Artigo"], function(pInf) {
+                getProductInformation(obj[i]["Artigo"], function(pInf) {
                     obj[i]["DescArtigo"] = pInf["DescArtigo"];
                 }, function(error) { });
             }
