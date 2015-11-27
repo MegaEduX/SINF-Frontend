@@ -64,9 +64,9 @@ function removeFromCartCookie(item) {
 }
 
 function updateCounter() {
-    //var arr = Cookies.getJSON(cartCookieName);
+    var arr = Cookies.getJSON(cartCookieName);
 
-    //$("#pickingItemCount").text(arr.length);
+    $("#pickingItemCount").text(arr.length);
 }
 
 $(document).ready(function() {
