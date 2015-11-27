@@ -35,12 +35,13 @@ router.get('/:id', function(req, res, next) {
                 {"Artigo": "A0002", "Lote" : "LT01", "Stock": "46", "Localizacao": "A2.A.001"}
             ];
 
-            getProductInformation(req.params.id, function(ci) {
-                res.render('items', { title: 'Sale items', order: testObj, customer: ci });
-            }, function(error) {
+            var completeObj = [];
 
-            });
-
+            for (var i = 0; i < testObj.length; i++) {
+                getProductInformation(req.params.id, function(pInf) {
+                    testObj["DescArtigo"] = pInf;
+                }, function(error) { });
+                }
             res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });
         }
     });

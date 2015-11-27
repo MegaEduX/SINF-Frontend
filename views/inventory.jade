@@ -3,6 +3,7 @@ include templates/navbar
 mixin invent(i)
     tr
         td #{i.Artigo}
+        td #{i.DescArtigo}
         td #{i.Lote}
         td #{i.Stock}
         td #{i.Localizacao}
@@ -16,6 +17,7 @@ block content
                 thead
                     tr
                         th Artigo
+                        th Description
                         th Lote
                         th Stock
                         th Localizacao
