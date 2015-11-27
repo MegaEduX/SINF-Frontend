@@ -36,7 +36,8 @@ router.get('/:id', function(req, res, next) {
             ];
 
             var completeObj = [];
-
+            console.log(testObj);
+            console.log(testObj.length);
             for (var i = 0; i < testObj.length; i++) {
                 getProductInformation(testObj["Artigo"], function(pInf) {
                     console.log(testObj["Artigo"]);
