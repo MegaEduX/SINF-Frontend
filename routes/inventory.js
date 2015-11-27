@@ -36,14 +36,14 @@ router.get('/:id', function(req, res, next) {
             ];
 
             var completeObj = [];
-            console.log(testObj);
-            console.log(testObj.length);
+            console.info(testObj);
+            console.info(testObj.length);
             for (var i = 0; i < testObj.length; i++) {
                 getProductInformation(testObj["Artigo"], function(pInf) {
-                    console.log(testObj["Artigo"]);
-                    console.log(pInf);
+                    console.info(testObj["Artigo"]);
+                    console.info(pInf);
                     testObj["DescArtigo"] = pInf;
-                    console.log(testObj["DescArtigo"]);
+                    console.info(testObj["DescArtigo"]);
                 }, function(error) { });
                 }
             res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });
