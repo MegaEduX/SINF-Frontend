@@ -38,8 +38,11 @@ router.get('/:id', function(req, res, next) {
             var completeObj = [];
 
             for (var i = 0; i < testObj.length; i++) {
-                getProductInformation(req.params.id, function(pInf) {
+                getProductInformation(testObj["Artigo"], function(pInf) {
+                    console.log(testObj["Artigo"]);
+                    console.log(pInf);
                     testObj["DescArtigo"] = pInf;
+                    console.log(testObj["DescArtigo"]);
                 }, function(error) { });
                 }
             res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });

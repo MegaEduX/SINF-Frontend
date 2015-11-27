@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ad22f2-6999-4d38-aa8d-262a29410e54" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/inventory.jade" afterPath="$PROJECT_DIR$/views/inventory.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/inventory.js" afterPath="$PROJECT_DIR$/routes/inventory.js" />
     </list>
     <ignored path="SINF-Frontend.iws" />
@@ -65,21 +64,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventory.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inventory.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/inventory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.068966">
-              <caret line="41" column="39" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.7412178">
+              <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventory.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inventory.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/inventory.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10278114">
-              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+            <state vertical-scroll-proportion="-1.8214285">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -144,8 +143,8 @@
         <option value="$PROJECT_DIR$/views/warehouses.jade" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/js/cart.js" />
-        <option value="$PROJECT_DIR$/routes/inventory.js" />
         <option value="$PROJECT_DIR$/views/inventory.jade" />
+        <option value="$PROJECT_DIR$/routes/inventory.js" />
       </list>
     </option>
   </component>
@@ -592,12 +591,12 @@
       <workItem from="1447965397871" duration="639000" />
       <workItem from="1447966068044" duration="3704000" />
       <workItem from="1448020790122" duration="3453000" />
-      <workItem from="1448573959787" duration="7272000" />
+      <workItem from="1448573959787" duration="7426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15068000" />
+    <option name="totallyTimeSpent" value="15222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="734" y="0" width="1248" height="1040" extended-state="0" />
@@ -1077,18 +1076,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/inventory.js">
+    <entry file="file://$PROJECT_DIR$/views/inventory.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.068966">
-          <caret line="41" column="39" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="39" />
+        <state vertical-scroll-proportion="-1.8214285">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/inventory.jade">
+    <entry file="file://$PROJECT_DIR$/routes/inventory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10278114">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.7412178">
+          <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
           <folding />
         </state>
       </provider>
