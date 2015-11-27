@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="76ad22f2-6999-4d38-aa8d-262a29410e54" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/sales.js" afterPath="$PROJECT_DIR$/routes/sales.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SINF-Frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,8 +117,8 @@
       <file leaf-file-name="sales.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/sales.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6534541">
-              <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.15402038">
+              <caret line="17" column="116" selection-start-line="17" selection-start-column="116" selection-end-line="17" selection-end-column="116" />
               <folding />
             </state>
           </provider>
@@ -601,12 +600,12 @@
       <workItem from="1447965397871" duration="639000" />
       <workItem from="1447966068044" duration="3704000" />
       <workItem from="1448020790122" duration="3453000" />
-      <workItem from="1448573959787" duration="9844000" />
+      <workItem from="1448573959787" duration="9946000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17640000" />
+    <option name="totallyTimeSpent" value="17742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1295" height="1040" extended-state="0" />
@@ -1096,8 +1095,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/sales.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6534541">
-          <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.15402038">
+          <caret line="17" column="116" selection-start-line="17" selection-start-column="116" selection-end-line="17" selection-end-column="116" />
           <folding />
         </state>
       </provider>

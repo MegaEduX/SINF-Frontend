@@ -13,6 +13,8 @@ router.get('/', function(req, res, next) {
             res.render('sales', { title: 'Sales', sales: obj });
         } else {
             var testObj = [
+                {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12},
+                {"Entidade": "FERNANDO", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12},
                 {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12}
             ];
 
@@ -41,6 +43,8 @@ router.get('/:client', function(req, res, next) {
             res.render('sales', { title: 'Sales', sales: filterObj });
         } else {
             var testObj = [
+                {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12},
+                {"Entidade": "FERNANDO", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12},
                 {"Entidade": "SILVA", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12}
             ];
 
