@@ -1,0 +1,26 @@
+extends layout
+include templates/navbar
+mixin invent(i)
+    tr
+        td #{i.Artigo}
+        td #{i.DescArtigo}
+        td #{i.Lote}
+        td #{i.Stock}
+        td #{i.Localizacao}
+
+block content
+    +nav(title)
+    div.container
+        .content-wrapper
+            h1= title
+            table.datatable.table.table-stripped.table-bordered
+                thead
+                    tr
+                        th Artigo
+                        th Description
+                        th Lote
+                        th Stock
+                        th Localizacao
+                tbody
+                    each val in inventory
+                        +invent(val)
