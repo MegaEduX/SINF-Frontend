@@ -7,7 +7,6 @@ var request = require('request');
 router.get('/', checkToken(), function(req, res, next) {
     
     request(process.env.PRIMAVERA_URI + 'Customers', function (error, response, body) {
-        console.log(req.cookies.access_token);
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
             

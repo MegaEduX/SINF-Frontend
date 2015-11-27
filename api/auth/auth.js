@@ -20,11 +20,9 @@ exports.decodeToken = function() {
 exports.checkToken = function() {
   return function(req, res, next) {
     // look for a token in cookies
-    console.log(req.cookies.access_token);
     if (req.cookies.access_token != undefined) {
       req.headers.authorization = 'Bearer ' + req.cookies.access_token;
     }
-    console.log("token");
     // check token. If invalid, send 401
     checkToken(req, res, next);
   }

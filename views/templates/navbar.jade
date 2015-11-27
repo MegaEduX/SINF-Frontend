@@ -46,7 +46,7 @@ mixin nav(active)
             li
               a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
           li
-            a(href='/logout') Log Out
+            a#logoutBtn(href='#') Log Out
 
 mixin navGuest(active)
   .navbar.navbar-default.navbar-fixed-top(role='navigation')
