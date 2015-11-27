@@ -20,7 +20,7 @@ router.get('/:id', function(req, res, next) {
                 {"Artigo": "A0002", "Lote" : "LT01", "Stock": "46", "Localizacao": "A2.A.001"}
             ];
 
-            res.render('inventory', { title: 'Inventory', inventory: testObj });
+            res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });
         }
     });
 });

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ad22f2-6999-4d38-aa8d-262a29410e54" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/inventory.jade" afterPath="$PROJECT_DIR$/views/inventory.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/inventory.js" afterPath="$PROJECT_DIR$/routes/inventory.js" />
     </list>
     <ignored path="SINF-Frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,21 +64,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/inventory.js">
+      <file leaf-file-name="warehouses.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/warehouses.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.896552">
-              <caret line="22" column="67" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventory.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inventory.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/inventory.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5374707">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sales.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/sales.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+              <folding>
+                <marker date="1448573672253" expanded="true" signature="375:714" placeholder="..." />
+                <marker date="1448573672253" expanded="true" signature="403:714" placeholder="..." />
+                <marker date="1448573672253" expanded="true" signature="462:714" placeholder="..." />
+                <marker date="1448573672253" expanded="true" signature="522:649" placeholder="..." />
+                <marker date="1448573672253" expanded="true" signature="535:649" placeholder="..." />
+                <marker date="1448573672253" expanded="true" signature="663:714" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inventory.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/inventory.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49765807">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.7586207">
+              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -133,9 +159,9 @@
         <option value="$PROJECT_DIR$/views/items.jade" />
         <option value="$PROJECT_DIR$/views/warehouses.jade" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/routes/inventory.js" />
         <option value="$PROJECT_DIR$/public/js/cart.js" />
         <option value="$PROJECT_DIR$/views/inventory.jade" />
+        <option value="$PROJECT_DIR$/routes/inventory.js" />
       </list>
     </option>
   </component>
@@ -582,12 +608,12 @@
       <workItem from="1447965397871" duration="639000" />
       <workItem from="1447966068044" duration="3704000" />
       <workItem from="1448020790122" duration="3453000" />
-      <workItem from="1448573959787" duration="5691000" />
+      <workItem from="1448573959787" duration="5983000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13487000" />
+    <option name="totallyTimeSpent" value="13779000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="734" y="0" width="1248" height="1040" extended-state="0" />
@@ -851,14 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/warehouses.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20777778">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -941,14 +959,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/sales.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4722222">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1067,18 +1077,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/inventory.js">
+    <entry file="file://$PROJECT_DIR$/views/inventory.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.896552">
-          <caret line="22" column="67" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="67" />
+        <state vertical-scroll-proportion="-1.7586207">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/inventory.jade">
+    <entry file="file://$PROJECT_DIR$/views/sales.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49765807">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding>
+            <marker date="1448573672253" expanded="true" signature="375:714" placeholder="..." />
+            <marker date="1448573672253" expanded="true" signature="403:714" placeholder="..." />
+            <marker date="1448573672253" expanded="true" signature="462:714" placeholder="..." />
+            <marker date="1448573672253" expanded="true" signature="522:649" placeholder="..." />
+            <marker date="1448573672253" expanded="true" signature="535:649" placeholder="..." />
+            <marker date="1448573672253" expanded="true" signature="663:714" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/warehouses.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/inventory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5374707">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
           <folding />
         </state>
       </provider>
