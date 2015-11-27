@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 	
 	// tooltips
-	$('[data-toggle="tooltip"]').tooltip()
+	$('[data-toggle="tooltip"]').tooltip();
 
 	// datetime picker
 	$('#datetimepicker').datetimepicker({
@@ -30,7 +30,7 @@ $(document).ready(function() {
 			console.log("suc");
 		}).success(function(data) {
 			if (data.token != undefined) {
-				document.cookie = 'access_token=['+data.token+']';
+				document.cookie = 'access_token='+data.token;
 				window.location = "/";
 			}
 		}); 

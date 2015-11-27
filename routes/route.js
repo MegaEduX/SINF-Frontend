@@ -1,9 +1,10 @@
 var express = require('express');
+var checkToken = require('../api/auth/auth').checkToken;
 var router = express.Router();
 
 var request = require('request');
 
-router.get('/', function(req, res, next) {
+router.get('/', checkToken(), function(req, res, next) {
     console.log(req.cookies);
 
     if (req.cookies.itemsCart) {
