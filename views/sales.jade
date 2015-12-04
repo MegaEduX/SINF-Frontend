@@ -11,10 +11,13 @@ mixin sale(s)
       +actions(s.NumDoc)
 
 mixin actions(sale)
-  a.btn.btn-default(href='/items/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Items')  
-    span.glyphicon.glyphicon-list-alt(aria-hidden='true')
+  a.btn.btn-default(href='#', onclick='pickAllFromSale(' + sale + '); return false;', role='button' data-toggle='tooltip' data-placement='bottom' title='Pick All')
+    span.glyphicon.glyphicon-plus(aria-hidden='true')
+  a.btn.btn-default(href='/items/' + sale, role='button' data-toggle='tooltip' data-placement='bottom' title='Inspect')  
+    span.glyphicon.glyphicon-search(aria-hidden='true')
 
 block content
+  script(src='/js/sales.js')
   +nav(title)
   div.container
     .content-wrapper
