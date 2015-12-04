@@ -21,13 +21,12 @@ $(document).ready(function() {
 	});
 
 	// login button workaround
-	// should be replaced with something smarter and more secure
+	// should be replaced with something smarter
 	$("#loginBtn").click(function(e) {
 		e.preventDefault();
 		var username = $("#username").val();
 		var pass = $("#password").val();
 		$.post( "/api/auth/login", $( "#loginForm" ).serialize(), function() {
-			console.log("suc");
 		}).success(function(data) {
 			if (data.token != undefined) {
 				document.cookie = 'access_token='+data.token;
@@ -35,4 +34,11 @@ $(document).ready(function() {
 			}
 		}); 
 	});
+
+	$("#logoutBtn").click(function(e) {
+		e.preventDefault();
+		document.cookie= 'access_token=';
+		window.location = "/login";
+	});
+
 } );

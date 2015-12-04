@@ -11,7 +11,7 @@ exports.decodeToken = function() {
     }
 
     // this will call next if token is valid
-    // and send error if its not. It will attached
+    // and send error if its not. It will attach
     // the decoded token to req.user
     checkToken(req, res, next);
   };
@@ -19,12 +19,11 @@ exports.decodeToken = function() {
 
 exports.checkToken = function() {
   return function(req, res, next) {
-    // look for a tooken in cookies
+    // look for a token in cookies
     if (req.cookies.access_token != undefined) {
       req.headers.authorization = 'Bearer ' + req.cookies.access_token;
     }
-    // check token
-    // if invalid, send 401
+    // check token. If invalid, send 401
     checkToken(req, res, next);
   }
 }
