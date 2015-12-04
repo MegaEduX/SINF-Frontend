@@ -26,13 +26,17 @@ function _cartMakePart(d, i) {
 }
 
 function existsInCartCookie(document, initialItem) {
-    var c = Cookies.getJSON(cartCookieName);
+    try {
+        var c = Cookies.getJSON(cartCookieName);
 
-    for (var i = 0, len = c.length; i < len; i++)
-        if (c[i].order == document && c[i].item == initialItem)
-            return true;
+        for (var i = 0, len = c.length; i < len; i++)
+            if (c[i].order == document && c[i].item == initialItem)
+                return true;
 
-    return false;
+        return false;
+    } catch (e) {
+        return false;
+    }
 }
 
 function createCartCookie(document, initialItem) {
@@ -64,9 +68,13 @@ function removeFromCartCookie(item) {
 }
 
 function updateCounter() {
-    var arr = Cookies.getJSON(cartCookieName);
+    try {
+        var arr = Cookies.getJSON(cartCookieName);
 
-    $("#pickingItemCount").text(arr.length);
+        $("#pickingItemCount").text(arr.length);
+    } catch (e) {
+
+    }
 }
 
 $(document).ready(function() {
