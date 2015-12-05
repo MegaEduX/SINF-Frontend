@@ -32,6 +32,14 @@ function pickAllFromSale(sale) {
             if (json["LinhasDoc"]) {
                 json["LinhasDoc"].forEach(function(obj) {
                     addToShoppingCart(json["NumDoc"], obj["CodArtigo"]);
+
+                    var plusId = json["NumDoc"] + '-' + obj["CodArtigo"];
+
+                    try {
+                        $("#" + plusId).hide();
+                    } catch (e) {
+
+                    }
                 });
             }
         }
@@ -56,7 +64,7 @@ function format(d) {
 
     console.log("This is only being parsed now.");
 
-    var ret = '<a href="#" class="btn btn-default" onclick="pickAllFromSale(' + d.NumDoc + ')" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
+    var ret = '<a href="#" class="btn btn-default" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
               '<br /><table class="table no-footer">' +
                 '<thead>' +
                     '<tr>' +
@@ -73,6 +81,8 @@ function format(d) {
                 '</thead>';
 
     d.LinhasDoc.forEach(function(linhaDoc) {
+        var plusId = d.NumDoc + '-' + linhaDoc.CodArtigo;
+
         ret += '<tr><td>' + linhaDoc.CodArtigo +
         '</td><td>' + linhaDoc.DescArtigo +
         '</td><td>' + linhaDoc.DataEntrega +
@@ -81,7 +91,7 @@ function format(d) {
         '</td><td>' + linhaDoc.PrecoUnitario +
         '</td><td>' + linhaDoc.Desconto +
         '</td><td>' + (linhaDoc.PrecoUnitario * linhaDoc.Quantidade - linhaDoc.Desconto) +
-        (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) ? '</td><td>' : '</td><td><a id="' + d.NumDoc + '-' + linhaDoc.CodArtigo + '" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("' + linhaDoc.codArtigo + '").hide(); return false;\'><span class="glyphicon glyphicon-plus"></span></a>') +
+        (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) ? '</td><td>' : '</td><td><a id="' + plusId + '" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("#' + plusId + '").hide(); return false;\'><span class="glyphicon glyphicon-plus"></span></a>') +
         '</td></tr>';
     });
 
