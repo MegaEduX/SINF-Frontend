@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', checkToken(), function(req, res, next) {
     var cart = JSON.parse(req.cookies.itemsCart);
 
-    res.render('picking', { title: 'Items for Picking', toPick: cart });
+    res.render('picking', { title: 'Create Picking Route', toPick: cart });
 });
 
 module.exports = router;
