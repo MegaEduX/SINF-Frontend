@@ -42,29 +42,19 @@ function pickAllFromSale(sale) {
                     }
                 });
             }
+
+            $("#pickAll-" + sale).hide();
         }
     };
 
     ajax.open("GET", "/items/" + sale + "/json", true);
     ajax.send();
+
+    $("#pickAll-" + sale).attr('disabled', 'disabled');
 }
 
 function format(d) {
-
-    /*
-    Code
-    th Description
-    th Shipping Date
-    th Unit
-    th Quantity
-    th Price
-    th Discount
-    th Total
-    */
-
-    console.log("This is only being parsed now.");
-
-    var ret = '<a href="#" class="btn btn-default" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
+    var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-default" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
               '<br /><table class="table no-footer">' +
                 '<thead>' +
                     '<tr>' +
@@ -80,6 +70,8 @@ function format(d) {
                     '</tr>' +
                 '</thead>';
 
+    var rem = d.LinhasDoc.length;
+
     d.LinhasDoc.forEach(function(linhaDoc) {
         var plusId = d.NumDoc + '-' + linhaDoc.CodArtigo;
 
@@ -93,7 +85,20 @@ function format(d) {
         '</td><td>' + (linhaDoc.PrecoUnitario * linhaDoc.Quantidade - linhaDoc.Desconto) +
         (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) ? '</td><td>' : '</td><td><a id="' + plusId + '" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("#' + plusId + '").hide(); return false;\'><span class="glyphicon glyphicon-plus"></span></a>') +
         '</td></tr>';
+
+        if (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo))
+            rem--;
     });
+
+    console.log(rem);
+
+    if (rem == 0) {
+        setTimeout(function() {
+            $("#pickAll-" + d.NumDoc).hide();
+
+            console.log("Hid element " + "#pickAll-" + d.NumDoc);
+        }, 1);
+    }
 
     ret += '</table>';
 
@@ -101,9 +106,21 @@ function format(d) {
 }
 
 $(document).ready(function() {
+    var expl = window.location.href.split("/");
+
+    var ajax = null;
+
+    if (expl[expl.length - 1] == "" || expl[expl.length - 1] == null || expl[expl.length - 1] == "sales") {
+        ajax = "/sales/json";
+    } else {
+        ajax = "/sales/" + expl[expl.length - 1] + "/json";
+    }
+
+    console.log(ajax);
+
     var table = $('#salesTable').DataTable( {
         "paging":   false,
-        "ajax": "/sales/json",
+        "ajax": ajax,
         "columns": [
             {
                 "className":      'details-control',

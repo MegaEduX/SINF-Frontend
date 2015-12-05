@@ -4,6 +4,40 @@ var checkToken = require('../api/auth/auth').checkToken;
 
 var request = require('request');
 
+router.get('/:client/json', checkToken(), function(req, res, next) {
+    console.log("Called client json method.");
+    
+    request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var obj = JSON.parse(body);
+
+            var filterObj = [];
+            var j = 0;
+
+            for (var i = 0; i < obj.length; i++) {
+                if (obj[i]["Entidade"] == req.params.client) {
+                    filterObj[j] = obj[i];
+                    j++;
+
+                    console.log("Adding to filterObj with entity " + obj[i]["Entidade"]);
+                }
+            }
+
+            console.log("Returning " + filterObj + "...");
+
+            res.send(JSON.stringify({"data": filterObj}));
+        } else {
+            var testObj = [
+                {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},
+                {"Entidade": "FERNANDO", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},
+                {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]}
+            ];
+
+            res.send(JSON.stringify({"data": testObj}));
+        }
+    });
+});
+
 router.get('/json', checkToken(), function(req, res, next) {
     request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -45,6 +79,8 @@ router.get('/', checkToken(), function(req, res, next) {
 });
 
 router.get('/:client', function(req, res, next) {
+    console.log("Called client method!");
+
     request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
@@ -56,10 +92,12 @@ router.get('/:client', function(req, res, next) {
                 if (obj[i]["Entidade"] == req.params.client) {
                     filterObj[j] = obj[i];
                     j++;
+
+                    console.log("Adding to filterObj with entity " + obj[i]["Entidade"]);
                 }
             }
 
-            console.log("Returning " + obj + "...");
+            console.log("Returning " + filterObj + "...");
 
             res.render('sales', { title: 'Sales', sales: filterObj });
         } else {
