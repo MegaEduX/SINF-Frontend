@@ -22,6 +22,7 @@ block content
     .content-wrapper
       h1= title
       br
+      a.butt
       table.table.table-stripped.table-bordered
         thead
           tr
@@ -33,3 +34,6 @@ block content
         tbody(id='pickingTable')
           each val in toPick
             +linha(val)
+      a.btn.btn-success(href="#" id="createPickingRoute") Create Picking Route
+      br
+      br

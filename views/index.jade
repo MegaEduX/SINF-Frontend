@@ -2,7 +2,8 @@ extends layout
 include templates/navbar
 
 block content
-	+nav(title)
-	div.container
-		h1= title
-		p Welcome to #{title}
+  +nav(title)
+  div.container
+    .content-wrapper
+      h1= title
+      p Get picking!

@@ -12,8 +12,6 @@ mixin warehouse(wh)
 mixin actions(warehouse)
   a.btn.btn-default(href='/inventory/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Inventory')
     span.glyphicon.glyphicon-list-alt(aria-hidden='true')
-  a.btn.btn-default(href='/sections/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Sections')
-    span.glyphicon.glyphicon-th-large(aria-hidden='true')
 
 block content
   +nav(title)
