@@ -43,6 +43,10 @@ function createCartCookie(document, initialItem) {
     Cookies.set(cartCookieName, [_cartMakePart(document, initialItem)]);
 }
 
+function deleteCartCookie() {
+    Cookies.remove(cartCookieName);
+}
+
 function addToCartCookie(document, item) {
     var current = Cookies.getJSON(cartCookieName);
 

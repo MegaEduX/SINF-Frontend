@@ -1,28 +1,111 @@
 var express = require('express');
 var router = express.Router();
 var checkToken = require('../api/auth/auth').checkToken;
+var User = require('../api/user/userModel');
+
+var _ = require('underscore');
 
 var request = require('request');
 
-router.get('/', checkToken(), function(req, res, next) {
-    request('http://this-request-will-fail/', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var obj = JSON.parse(body);
+router.get('/:id', checkToken(), function(req, res, next) {
+    var RouteModel = require('../api/route/routeModel');
 
-            console.log("Returning " + obj + "...");
+    RouteModel.findById(req.params.id, function(err, route) {
+        if (err == null) {
+            //  Phase 1 - Get all sales.
 
-            res.render('routes', { title: 'Routes', routes: obj });
+            var orders = [];
+
+            route.objects.forEach(function(itemInOrder) {
+                if (_.findWhere(orders, { order: itemInOrder.order }) == null) {
+                    orders.push(itemInOrder);
+                }
+            });
+
+            request(process.env.PRIMAVERA_URI + 'Sales', function(error, response, body) {
+                var sales = JSON.parse(body);
+
+                //  Phase 2 - Get count of each item.
+
+                var itemsAndCount = {};
+
+                sales.forEach(function(sale) {
+                    if (_.findWhere(orders, { order: sale.NumDoc }) != null) {
+                        route.objects.forEach(function(itemInOrder) {
+                            if (itemInOrder.order == sale.NumDoc) {
+                                sale.LinhasDoc.forEach(function(linha) {
+                                    if (itemInOrder.item == linha.CodArtigo) {
+                                        if (itemInOrder.item in itemsAndCount)
+                                            itemsAndCount[itemInOrder.item] += linha.Quantidade;
+                                        else
+                                            itemsAndCount[itemInOrder.item] = linha.Quantidade;
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+                //  Phase 3 - Get warehouses for items.
+
+                var itemsAndWarehouses = {};
+
+                var i = 0;
+
+                for (var key in itemsAndCount) {
+                    //  Sometimes I just hate JS.
+                    //  Creating a function to force the variable scope I desire...
+
+                    (function() {
+                        var k = key;
+
+                        i++;
+
+                        request(process.env.PRIMAVERA_URI + 'Stock/' + k, function(error, response, body) {
+                            i--;
+
+                            var wh = JSON.parse(body);
+
+                            for (w in wh)
+                                delete w.artigo;
+
+                            itemsAndWarehouses[k] = JSON.parse(body);
+
+                            if (i == 0) {
+                                var final = [];
+
+                                for (var itemIdentifier in itemsAndCount) {
+                                    var x = { item: itemIdentifier, count: itemsAndCount[itemIdentifier], warehouses: wh };
+
+                                    final.push(x);
+                                }
+                            }
+
+                            //  Step 4 - We have {item, count, warehouses}.
+                            //  Build a path.
+
+                            //  Thanks in advance.
+                        });
+                    })();
+                }
+            });
         } else {
-            var testObj = [
-                {"ID": 1, "Name": "Route 12", "Costumers": "Jose Maria Fernandes & Filhos Lda", "Warehouse": "A1", "Workers": "Worker1", "Date": "20.11.2015."},
-                {"ID": 2, "Name": "Route xyz", "Costumers": "Empreendimentos do Lima", "Warehouse": "A1", "Workers": "Worker1", "Date": "20.11.2015."},
-                {"ID": 3, "Name": "Route 89AD89DS", "Costumers": "Jose Maria Fernandes & Filhos Lda, Empreendimentos do Lima, MircoAvi Inc.", "Warehouse": "A1", "Workers": "Worker2", "Date": "22.11.2015."},
-                {"ID": 4, "Name": "WQW34", "Costumers": "MircoAvi Inc.", "Warehouse": "A1", "Workers": "Worker1", "Date": "27.11.2015."}
-            	 
-            ];
-
-            res.render('routes', { title: 'Routes', routes: testObj });
+            //  Handle Error
         }
+    });
+});
+
+router.get('/', checkToken(), function(req, res, next) {
+    var RouteModel = require('../api/route/routeModel');
+
+    User.findById(req.user._id).then(function(user) {
+        RouteModel.find({username: user.username}).exec(function(err, routes) {
+            if (err == null) {
+                res.render('routes', { title: 'Routes', routes: routes });
+            } else {
+                //  Handle Error!
+            }
+        });
     });
 });
 

@@ -5,35 +5,33 @@ script(src='/js/picking.js')
 
 mixin linha(s)
   tr
-    td 
-      input(type='checkbox')
-    td -- TBD --
-    td -- TBD --
-    td #{s.item}
     td #{s.order}
+    td #{s.item}
+    td
+      a.btn.btn-xs.btn-danger(href="#") Remove
 
 mixin actions(cod)
   a(href='#', onclick='removeFromShoppingCart("#{cod}"); return false;')
     span.glyphicon.glyphicon-plus(aria-hidden="true")
 
 block content
+  script(src='/js/picking.js')
   +nav(title)
   div.container
     .content-wrapper
       h1= title
       br
-      a.butt
       table.table.table-stripped.table-bordered
         thead
           tr
-            th Done
-            th Warehouse
-            th Section
+            th Order
             th Code
-            th Quantity
+            th Action
         tbody(id='pickingTable')
           each val in toPick
             +linha(val)
-      a.btn.btn-success(href="#" id="createPickingRoute") Create Picking Route
+      a.btn.btn-success(href="/picking/create") Create Picking Route
+      span &nbsp; &nbsp;
+      a.btn.btn-danger(href="#" id="deleteAll") Delete All Items
       br
       br

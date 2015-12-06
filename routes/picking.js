@@ -2,11 +2,46 @@ var express = require('express');
 var checkToken = require('../api/auth/auth').checkToken;
 var router = express.Router();
 
-/* GET login page. */
-router.get('/', checkToken(), function(req, res, next) {
+router.get('/create', checkToken(), function(req, res, next) {
     var cart = JSON.parse(req.cookies.itemsCart);
 
-    res.render('picking', { title: 'Create Picking Route', toPick: cart });
+    var RouteModel = require('../api/route/routeModel');
+    var User = require('../api/user/userModel.js');
+
+    console.log('Got here.');
+
+    User.findById(req.user._id).then(function(user) {
+        try {
+            var r = new RouteModel({
+                username: user.username,
+                objects: cart,
+                picked: [],
+                date: Date.now()
+            });
+        } catch (e) {
+            console.log("Exception! - " + e);
+        }
+
+        r.save(function(err, route) {
+            if (err == null) {
+                res.redirect('/routes/' + route.id);
+            } else {
+                console.log(err);
+            }
+        });
+    });
+});
+
+router.get('/', checkToken(), function(req, res, next) {
+    var cart = [];
+
+    try {
+        cart = JSON.parse(req.cookies.itemsCart);
+    } catch (e) {
+
+    }
+
+    res.render('picking', { title: 'Confirm Picking Route Creation', toPick: cart });
 });
 
 module.exports = router;

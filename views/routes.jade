@@ -3,16 +3,14 @@ include templates/navbar
 
 mixin route(s)
 	tr
-		td #{s.Name}
-		td #{s.Costumers}
-		td #{s.Warehouse}
-		td #{s.Workers}
-		td #{s.Date}
+		td #{s.date}
+		td #{s.objects.length}
+		td #{s.picked.length}
 		td
-			+actions(s.ID)
+			+actions(s.id)
 
 mixin actions(route)
-	a.btn.btn-default(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')  
+	a.btn.btn-default(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')
 		span.glyphicon.glyphicon-random(aria-hidden='true')
 
 block content
@@ -20,32 +18,13 @@ block content
 	div.container
 		.content-wrapper.routes-wrapper
 			h1= title
-			.routes-controls
-				#datetimepicker.input-group.date
-					input(type="text").form-control.input-sm
-					span.input-group-addon.input-sm
-						i.glyphicon.glyphicon-calendar
-
-				.input-group
-					select.form-control.input-sm
-						option(value="1") Warehouse1
-						option(value="2") Warehouse2
-						option(value="3") Warehouse3
-
-				.input-group
-					select.form-control.input-sm
-						option(value="1") Worker1
-						option(value="2") Worker2
-						option(value="3") Worker3
 
 			table.datatable.table.table-stripped.table-bordered
 				thead
 					tr
-						th Name
-						th Costumers
-						th Warehouse
-						th Workers
-						th Date
+						th Creation Date
+						th Item Count
+						th Picked Count
 						th Action
 				tbody
 					each val in routes

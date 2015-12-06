@@ -1,3 +1,9 @@
 $(document).ready(function() {
-	// build table from cookie
+	$("#deleteAll").click(function() {
+		console.log("Clicked delete all.");
+
+		deleteCartCookie();
+
+		location.reload();
+	});
 });
