@@ -88,6 +88,18 @@ a {
 	width: 300px !important;
 }
 
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before {
+	box-shadow: none;
+	line-height: 18px;
+	text-indent: 3.5px;
+	height: 17px;
+	width: 17px;
+	background-color: #18BC9C;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::before {
+	background-color: #E74C3C;
+}
+
 /*
  *	ROUTES
  */
@@ -110,11 +122,25 @@ a {
  }
 
 /*  Sales Items */
-
- td.details-control {
-     background: url('/images/table_expand.png') no-repeat center center;
-     cursor: pointer;
+ td.details-control:after {
+    cursor: pointer;
+    top: 8px;
+	left: 4px;
+	height: 17px;
+	width: 17px;
+	display: block;
+	color: #FFF;
+	border: 2px solid #FFF;
+	border-radius: 16px;
+	box-sizing: content-box;
+	font-family: "Courier New",Courier,monospace;
+	line-height: 18px;
+	text-indent: 3.5px;
+	content: "+";
+	background-color: #18BC9C;
  }
- tr.shown td.details-control {
-     background: url('/images/table_close.png') no-repeat center center;
+ tr.shown td.details-control:after {
+	content: "-";
+	background-color: #E74C3C;
+	
  }
