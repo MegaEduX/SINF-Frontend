@@ -67,7 +67,7 @@ a {
 	width: 100% !important;
 }
 .datatable a {
-	padding: 8px 12px;
+	/* padding: 8px 12px; */
 	margin-right: 2px;
 }
 .pagination li a {
@@ -98,6 +98,13 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before {
 }
 table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::before {
 	background-color: #E74C3C;
+}
+
+.btn-xs span.glyphicon {
+	top: 2px;
+}
+.btn-text {
+	padding-left: 4px;
 }
 
 /*
@@ -142,5 +149,5 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
  tr.shown td.details-control:after {
 	content: "-";
 	background-color: #E74C3C;
-	
+
  }

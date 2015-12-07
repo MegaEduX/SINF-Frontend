@@ -10,7 +10,7 @@ mixin route(s)
 			+actions(s.id)
 
 mixin actions(route)
-	a.btn.btn-default(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')
+	a.btn.btn-xs.btn-primary(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')
 		span.glyphicon.glyphicon-random(aria-hidden='true')
 
 block content

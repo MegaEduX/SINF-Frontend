@@ -8,7 +8,8 @@ mixin linha(s)
     td #{s.order}
     td #{s.item}
     td
-      a.btn.btn-xs.btn-danger(href="#") Remove
+      a.btn.btn-xs.btn-danger(href="#", role='button' data-toggle='tooltip' data-placement='bottom' title='Delete') 
+        span.glyphicon.glyphicon-trash(aria-hidden='true')
 
 mixin actions(cod)
   a(href='#', onclick='removeFromShoppingCart("#{cod}"); return false;')
@@ -30,8 +31,12 @@ block content
         tbody(id='pickingTable')
           each val in toPick
             +linha(val)
-      a.btn.btn-success(href="/picking/create") Create Picking Route
+      a.btn.btn-success(href="/picking/create") 
+        span.glyphicon.glyphicon-ok(aria-hidden='true')
+        span.btn-text Create Picking Route
       span &nbsp; &nbsp;
-      a.btn.btn-danger(href="#" id="deleteAll") Delete All Items
+      a.btn.btn-danger(href="#" id="deleteAll") 
+        span.glyphicon.glyphicon-trash(aria-hidden='true')
+        span.btn-text Delete All
       br
       br

@@ -54,7 +54,7 @@ function pickAllFromSale(sale) {
 }
 
 function format(d) {
-    var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-default" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
+    var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-xs btn-primary" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
               '<br /><table class="table no-footer">' +
                 '<thead>' +
                     '<tr>' +
@@ -133,7 +133,10 @@ $(document).ready(function() {
             { "data": "TotalMerc" },
             { "data": "Serie" }
         ],
-        "order": [[1, 'asc']]
+        "order": [[1, 'asc']],
+        oLanguage: {
+            sSearch: '<span class="glyphicon glyphicon-search"></span>'
+        }
     } );
 
     // Add event listener for opening and closing details

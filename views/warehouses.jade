@@ -10,7 +10,7 @@ mixin warehouse(wh)
       +actions(wh.Nome)
 
 mixin actions(warehouse)
-  a.btn.btn-default(href='/inventory/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Inventory')
+  a.btn.btn-xs.btn-primary(href='/inventory/' + warehouse, role='button' data-toggle='tooltip' data-placement='bottom' title='Inventory')
     span.glyphicon.glyphicon-list-alt(aria-hidden='true')
 
 block content
