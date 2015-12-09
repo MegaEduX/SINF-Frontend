@@ -17,7 +17,7 @@ router.get('/', checkToken(), function(req, res, next) {
                 {"Morada": "Av. dos Coqueiros", "CodCliente" : "INFORSHOW", "NomeCliente": "Inforshow, Informática Comunicação", "Moeda": "EUR", "NumContribuinte": "123456789"}
             ];
 
-            res.render('customers', { title: 'Customers', customers: testObj });
+            res.render('customers', { title: 'Customers', level: req.user.level, customers: testObj });
         }
     });
 });

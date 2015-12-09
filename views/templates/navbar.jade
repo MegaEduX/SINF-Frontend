@@ -1,4 +1,4 @@
-mixin nav(active)
+mixin nav(active, isAdmin)
   .navbar.navbar-default.navbar-fixed-top(role='navigation')
     .container
       .navbar-header
@@ -45,6 +45,13 @@ mixin nav(active)
           else
             li
               a(href='/customers') Customers
+          if (level >= 1)
+            if (active == 'Users')
+              li.active
+                a(href='/users') Users
+            else
+              li
+                a(href='/users') Users
         ul.nav.navbar-nav.navbar-right
           if (active == 'Picking')
             li.active

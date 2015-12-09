@@ -21,6 +21,7 @@ exports.params = function(req, res, next, id) {
 exports.get = function(req, res, next) {
   User.find({})
     .select('-password')
+    .select('-__v')
     .exec()
     .then(function(users){
       res.json(users.map(function(user){

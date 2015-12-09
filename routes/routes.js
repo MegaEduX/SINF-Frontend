@@ -101,7 +101,7 @@ router.get('/', checkToken(), function(req, res, next) {
     User.findById(req.user._id).then(function(user) {
         RouteModel.find({username: user.username}).exec(function(err, routes) {
             if (err == null) {
-                res.render('routes', { title: 'Routes', routes: routes });
+                res.render('routes', { title: 'Routes', level: req.user.level, routes: routes });
             } else {
                 //  Handle Error!
             }

@@ -41,7 +41,7 @@ router.get('/', checkToken(), function(req, res, next) {
 
     }
 
-    res.render('picking', { title: 'Confirm Picking Route Creation', toPick: cart });
+    res.render('picking', { title: 'Confirm Picking Route Creation', level: req.user.level, toPick: cart });
 });
 
 module.exports = router;

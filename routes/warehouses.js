@@ -19,7 +19,7 @@ router.get('/', checkToken(), function(req, res, next) {
                 {"Nome": "Test", "Morada": "Primavera Unreachable...", "Localidade": "...", "CodPostal": ""}
             ];
 
-            res.render('warehouses', { title: 'Warehouses', warehouses: testObj });
+            res.render('warehouses', { title: 'Warehouses', level: req.user.level, warehouses: testObj });
         }
     });
 });

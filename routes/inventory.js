@@ -47,7 +47,7 @@ router.get('/:id', function(req, res, next) {
                         }
                     }
 
-                    res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: obj });
+                    res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', level: req.user.level, inventory: obj });
                 }
             });
         } else {
@@ -61,7 +61,7 @@ router.get('/:id', function(req, res, next) {
                     testObj[i]["DescArtigo"] = pInf["DescArtigo"];
                 }, function(error) { });
             }
-            res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', inventory: testObj });
+            res.render('inventory', { title: 'Warehouse ' + req.params.id + ' Inventory', level: req.user.level, inventory: testObj });
         }
     });
 });

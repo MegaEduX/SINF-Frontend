@@ -1,30 +1,31 @@
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var config = require('../../config/config');
-var checkToken = expressJwt({ secret: config.secrets.jwt });
+var checkJwt = expressJwt({ secret: config.secrets.jwt });
 var User = require('../user/userModel');
 
 exports.decodeToken = function() {
   return function(req, res, next) {
     if (req.query && req.query.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer ' + req.query.access_token;
+    } else if (req.params && req.params.hasOwnProperty('access_token')) {
+      req.headers.authorization = 'Bearer ' + req.params.access_token;
     }
-
     // this will call next if token is valid
-    // and send error if its not. It will attach
+    // and send error 401 if its not. It will attach
     // the decoded token to req.user
-    checkToken(req, res, next);
+    checkJwt(req, res, next);
   };
 };
 
 exports.checkToken = function() {
   return function(req, res, next) {
     // look for a token in cookies
-    if (req.cookies.access_token != undefined) {
+    if (req.cookies && req.cookies.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer ' + req.cookies.access_token;
     }
     // check token. If invalid, send 401
-    checkToken(req, res, next);
+    checkJwt(req, res, next);
   }
 }
 
@@ -54,7 +55,6 @@ exports.verifyUser = function() {
   return function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    console.log(req.body);
     // if no username or password then send err
     if (!username || !password) {
       res.status(400).send('You need a username and password');
@@ -88,9 +88,9 @@ exports.verifyUser = function() {
 };
 
 // util method to sign tokens on signup
-exports.signToken = function(id) {
+exports.signToken = function(id, level) {
   return jwt.sign(
-    {_id: id},
+    {_id: id, level: level},
     config.secrets.jwt,
     {expiresIn: config.expireTime}
   );

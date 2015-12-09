@@ -13,9 +13,9 @@ var UserSchema = new Schema({
     required: true
   },
   level: {
-    type: String,
-    enum: ["worker", "admin"],
-    default: "worker",
+    type: Number,
+    min: 0,
+    default: 0,
     required: true
   }
 
