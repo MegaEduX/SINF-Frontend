@@ -60,7 +60,8 @@ mixin nav(active, isAdmin)
             li
               a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
           li
-            a#logoutBtn(href='#') Log Out
+            a#logoutBtn(href='#')
+              span.glyphicon.glyphicon-log-out(data-toggle='tooltip' data-placement='bottom' title='Logout')
 
 mixin navGuest(active)
   .navbar.navbar-default.navbar-fixed-top(role='navigation')
