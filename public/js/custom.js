@@ -41,6 +41,6 @@ $(document).ready(function() {
 		window.location = "/login";
 	});
 
-	$(".select-control").selectpicker();
+	
 
 } );

@@ -3,6 +3,7 @@ var _ = require('lodash');
 var signToken = require('../auth/auth').signToken;
 
 exports.params = function(req, res, next, id) {
+  console.log("param: " + id);
   User.findById(id)
     .select('-password')
     .exec()
@@ -10,7 +11,7 @@ exports.params = function(req, res, next, id) {
       if (!user) {
         next(new Error('No user with that id'));
       } else {
-        req.user = user;
+        req.IdedUser = user;
         next();
       }
     }, function(err) {
@@ -39,7 +40,7 @@ exports.getOne = function(req, res, next) {
 };
 
 exports.put = function(req, res, next) {
-  var user = req.user;
+  var user = req.IdedUser;
 
   var update = req.body;
 

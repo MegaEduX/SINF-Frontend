@@ -169,6 +169,15 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
  .routes-wrapper .dataTables_wrapper .row:nth-child(1) {
 
  }
+/*
+ * USERS
+ */ 
+.modal {
+	z-index: 2001;
+}
+.modal-backdrop {
+	z-index: 2000;
+}
 
 /*  Sales Items */
  td.details-control:after {
