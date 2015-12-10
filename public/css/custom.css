@@ -24,6 +24,23 @@ a {
 .navbar-default .navbar-toggle {
 	border-color: transparent !important;
 }
+.hide-on-tablet-view {
+	display: inherit;
+}
+.show-on-tablet-view {
+	display: inherit;
+}
+@media (max-width: 767px) {
+	.hide-on-tablet-view {
+		display: none;
+	}
+}
+@media (min-width: 768px) {
+	.show-on-tablet-view {
+		display: none;
+
+	}
+}
 
 /*
  *	LOGIN
@@ -70,6 +87,14 @@ a {
 	/* padding: 8px 12px; */
 	margin-right: 2px;
 }
+.dataTable thead {
+	background-color: #18BC9C;
+	color: #FFF;
+}
+.subtable thead {
+	background-color: #FFF;
+	color: #2C3E50;
+}
 .pagination li a {
 	padding: 8px 16px;
 }
@@ -86,6 +111,9 @@ a {
 }
 .dataTables_filter input[type="search"] {
 	width: 300px !important;
+}
+tr.even {
+	background-color: #F9F9F9;
 }
 
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before {
@@ -142,9 +170,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
 	box-sizing: content-box;
 	font-family: "Courier New",Courier,monospace;
 	line-height: 18px;
-	text-indent: 3.5px;
+	text-indent: 4.5px;
 	content: "+";
 	background-color: #18BC9C;
+	margin: 0 auto;
  }
  tr.shown td.details-control:after {
 	content: "-";
