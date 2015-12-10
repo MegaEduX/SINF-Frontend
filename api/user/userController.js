@@ -3,7 +3,6 @@ var _ = require('lodash');
 var signToken = require('../auth/auth').signToken;
 
 exports.params = function(req, res, next, id) {
-  console.log("param: " + id);
   User.findById(id)
     .select('-password')
     .exec()
@@ -35,7 +34,6 @@ exports.get = function(req, res, next) {
 
 exports.getOne = function(req, res, next) {
   var user = req.user.toJson();
-  console.log(user)
   res.json(user);
 };
 

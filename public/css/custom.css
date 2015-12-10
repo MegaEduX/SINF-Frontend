@@ -203,3 +203,18 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
 	background-color: #E74C3C;
 
  }
+/*
+ *	USER INFO
+ */ 
+#userInfo input[type="text"] {
+	width: 300px;
+	margin-bottom: 22px;
+}
+@media (max-width: 367px) {
+	#userInfo input[type="text"] {
+		width: 100%;
+	}
+}
+#userInfo label {
+	margin-top: 6px;
+}
