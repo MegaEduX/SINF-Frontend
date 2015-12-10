@@ -1,0 +1,32 @@
+extends layout
+include templates/navbar
+
+mixin user(u)
+	tr(data-toggle="collapse", data-target=s, class="accordion-toggle")
+		td #{u.username}
+		td #{u.name}
+		td #{u.surname}
+		td 
+			select.select-control
+				each l in levels
+					if (l.level == u.level)
+						option(value="#{l.level}" selected="") #{l.name}
+					else
+						option(value="#{l.level}") #{l.name}
+					
+
+block content
+	+nav(title, level)
+	div.container
+		.content-wrapper
+			h1= title
+			table.datatable.table.table-stripped.table-bordered
+				thead
+					tr
+						th Username
+						th Name
+						th Surname
+						th Access level
+				tbody
+					each user in users
+						+user(user)

@@ -55,7 +55,7 @@ function pickAllFromSale(sale) {
 
 function format(d) {
     var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-xs btn-primary" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
-              '<br /><table class="table no-footer">' +
+              '<br /><table class="table no-footer subtable">' +
                 '<thead>' +
                     '<tr>' +
                         '<th>Code</th>' +

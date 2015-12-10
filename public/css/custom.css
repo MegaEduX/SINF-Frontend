@@ -134,7 +134,21 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
 .btn-text {
 	padding-left: 4px;
 }
-
+.btn-group > .btn:first-child {
+	margin-left: 0px;
+	padding: 3px;
+	color: inherit;
+	border: 0px none;
+	background-color: inherit;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+	text-align: center;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	text-decoration: none;
+	color: inherit;
+	background-color: #F9F9F9;
+}
 /*
  *	ROUTES
  */
