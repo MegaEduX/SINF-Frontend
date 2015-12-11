@@ -21,6 +21,19 @@ a {
 .navbar {
 	border-radius: 0px !important;
 }
+.navbar-wrapper {
+	padding: 0px 28px;
+}
+@media (max-width: 767px) {
+	.navbar-wrapper {
+		padding: 0px 0px;
+	}
+}
+@media (min-width: 768px) and (max-width: 840px) {
+	.navbar-wrapper {
+		padding: 0px 4px;
+	}
+}
 .navbar-default .navbar-toggle {
 	border-color: transparent !important;
 }
@@ -38,9 +51,11 @@ a {
 @media (min-width: 768px) {
 	.show-on-tablet-view {
 		display: none;
-
 	}
 }
+.navbar-nav .glyphicon-user, .navbar-nav .glyphicon-log-out {
+	top: 4px;
+} 
 
 /*
  *	LOGIN

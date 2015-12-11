@@ -4,7 +4,7 @@ var checkToken = require('../api/auth/auth').checkToken;
 var userModel = require('../api/user/userModel');
 /* GET users listing. */
 router.get('/', checkToken(), function(req, res, next) {
-	var levels = [{name: "worker", level: 0}, {name: "admin", level: 1}];
+	var levels = [{name: "Worker", code: 0}, {name: "Admin", code: 1}, {name: "Manager", code: 2}];
 	if (req.user.level >= 1) {
 		userModel.find({})
 	    .select('-password')

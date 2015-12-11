@@ -2,6 +2,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
+var RoleSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  code: {
+    type: Number,
+    min: 0,
+    unique: 0,
+    required: true
+  }
+
+});
 var UserSchema = new Schema({
   username: {
     type: String,
@@ -20,10 +34,8 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
-  level: {
-    type: Number,
-    min: 0,
-    default: 0,
+  role: {
+    type: RoleSchema,
     required: true
   }
 

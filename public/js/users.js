@@ -6,11 +6,13 @@ $(document).ready(function() {
 			var id = tr.children(".idColumn").text();
 			var levelName = $(this).find(":selected").text();
 			var levelNum = $(this).val();
+			console.log($(this));
 			var userName = tr.children(".usernameColumn").text();
 			
 			$("#changeLevelConfirm .access-level").text(levelName);
 			$("#changeLevelConfirm .access-user").text(userName);
 			$("#changeLevelConfirm #accessLevelNum").val(levelNum);
+			$("#changeLevelConfirm #accessLevelName").val(levelName);
 			$("#changeLevelConfirm #accessUserId").val(id);
 			
 			$("#changeLevelConfirm").modal();
@@ -20,8 +22,9 @@ $(document).ready(function() {
 	$("#changeLevelConfirm .modal-footer .btn-success").click(function() {
 		var id = $("#changeLevelConfirm #accessUserId").val();
 		var levelNum = $("#changeLevelConfirm #accessLevelNum").val();
+		var levelName = $("#changeLevelConfirm #accessLevelName").val();
 		var token = getCookie("access_token");
-		if (!token || !id || !levelNum) {
+		if (!token || !id || !levelNum || !levelName) {
 			console.log("something is missing");
 			return;
 		}
@@ -30,7 +33,7 @@ $(document).ready(function() {
 		$.ajax({
 		    url: '/api/users/' + id + '?access_token='+token,
 		    type: 'PUT',
-		    data: {level: levelNum},
+		    data: {role: {code: levelNum, name: levelName}},
 		    success: function(data) {
 		        // Do something with the result
 		        console.log(data);

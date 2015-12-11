@@ -1,6 +1,6 @@
-mixin nav(active, isAdmin)
+mixin nav(active, level)
   .navbar.navbar-default.navbar-fixed-top(role='navigation')
-    .container
+    .navbar-wrapper
       .navbar-header
         button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
           span.sr-only Toggle navigation
@@ -45,13 +45,20 @@ mixin nav(active, isAdmin)
           else
             li
               a(href='/customers') Customers
-          if (level >= 1)
+          if (level == 1)
             if (active == 'Users')
               li.active
                 a(href='/users') Users
             else
               li
                 a(href='/users') Users
+          if (level == 2)
+            if (active == 'Receipts')
+              li.active
+                a(href='/receipts') Receipts
+            else
+              li
+                a(href='/receipts') Receipts
         ul.nav.navbar-nav.navbar-right
           if (active == 'Picking')
             li.active

@@ -10,10 +10,10 @@ mixin user(u)
 		td 
 			select.select-control.user-level-control
 				each l in levels
-					if (l.level == u.level)
-						option(value="#{l.level}" selected="") #{l.name}
+					if (l.code == u.role.code)
+						option(value="#{l.code}" selected="") #{l.name}
 					else
-						option(value="#{l.level}") #{l.name}
+						option(value="#{l.code}") #{l.name}
 
 block content
 	script(src='/js/users.js')
@@ -42,6 +42,7 @@ block content
 					h4.modal-title Access level
 					input#accessLevelNum(type="hidden")
 					input#accessUserId(type="hidden")
+					input#accessLevelName(type="hidden")
 
 				div.modal-body
 					span Are you sure that you want to give access level 
