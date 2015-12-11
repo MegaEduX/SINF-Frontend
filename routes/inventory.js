@@ -1,4 +1,5 @@
 var express = require('express');
+var checkToken = require('../api/auth/auth').checkToken;
 var router = express.Router();
 
 var request = require('request');
@@ -19,7 +20,7 @@ function getProductInformation(id, success, error) {
     });
 }
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', checkToken(), function(req, res, next) {
     request(process.env.PRIMAVERA_URI + 'Warehouses/' + req.params.id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
