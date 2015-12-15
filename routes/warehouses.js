@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var checkToken = require('../api/auth/auth').checkToken;
-
+var config = require('../config/config');
 var request = require('request');
 
 router.get('/', checkToken(), function(req, res, next) {
-    request(process.env.PRIMAVERA_URI + 'Warehouses', function (error, response, body) {
+    request(config.primavera.url + 'Warehouses', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 

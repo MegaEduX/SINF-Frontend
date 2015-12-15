@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var checkToken = require('../api/auth/auth').checkToken;
+var config = require('../config/config');
 
 var request = require('request');
 
 router.get('/:client/json', checkToken(), function(req, res, next) {
     console.log("Called client json method.");
     
-    request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
+    request(config.primavera.url + 'Sales', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
@@ -39,7 +40,7 @@ router.get('/:client/json', checkToken(), function(req, res, next) {
 });
 
 router.get('/json', checkToken(), function(req, res, next) {
-    request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
+    request(config.primavera.url + 'Sales', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
@@ -59,7 +60,7 @@ router.get('/json', checkToken(), function(req, res, next) {
 });
 
 router.get('/', checkToken(), function(req, res, next) {
-    request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
+    request(config.primavera.url + 'Sales', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
@@ -78,10 +79,10 @@ router.get('/', checkToken(), function(req, res, next) {
     });
 });
 
-router.get('/:client', function(req, res, next) {
+router.get('/:client', checkToken(), function(req, res, next) {
     console.log("Called client method!");
 
-    request(process.env.PRIMAVERA_URI + 'Sales', function (error, response, body) {
+    request(config.primavera.url + 'Sales', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 

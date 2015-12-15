@@ -1,11 +1,12 @@
 var express = require('express');
 var checkToken = require('../api/auth/auth').checkToken;
+var config = require('../config/config');
 var router = express.Router();
 
 var request = require('request');
 
 function getProductInformation(id, success, error) {
-    request(process.env.PRIMAVERA_URI + 'Products/' + id, function (error, response, body) {
+    request(config.primavera.url + 'Products/' + id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
@@ -21,13 +22,13 @@ function getProductInformation(id, success, error) {
 }
 
 router.get('/:id', checkToken(), function(req, res, next) {
-    request(process.env.PRIMAVERA_URI + 'Warehouses/' + req.params.id, function (error, response, body) {
+    request(config.primavera.url + 'Warehouses/' + req.params.id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
             console.log("Returning " + obj + "...");
 
-            request(process.env.PRIMAVERA_URI + 'Products/', function(error, response, body) {
+            request(config.primavera.url + 'Products/', function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     console.log("Got all products.");
 

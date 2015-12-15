@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config/config');
 var checkToken = require('../api/auth/auth').checkToken;
 var User = require('../api/user/userModel');
 
@@ -22,7 +23,7 @@ router.get('/:id', checkToken(), function(req, res, next) {
                 }
             });
 
-            request(process.env.PRIMAVERA_URI + 'Sales', function(error, response, body) {
+            request(config.primavera.url + 'Sales', function(error, response, body) {
                 var sales = JSON.parse(body);
 
                 //  Phase 2 - Get count of each item.
@@ -61,7 +62,7 @@ router.get('/:id', checkToken(), function(req, res, next) {
 
                         i++;
 
-                        request(process.env.PRIMAVERA_URI + 'Stock/' + k, function(error, response, body) {
+                        request(config.primavera.url + 'Stock/' + k, function(error, response, body) {
                             i--;
 
                             var wh = JSON.parse(body);

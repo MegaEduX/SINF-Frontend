@@ -5,7 +5,6 @@ exports.login = function(req, res, next) {
   // req.user will be there from the middleware
   // verify user. Then we can just create a token
   // and send it back for the client to consume
-  console.log(req.user.role.code);
   var token = signToken(req.user._id, req.user.role.code);
   res.json({token: token});
 };
