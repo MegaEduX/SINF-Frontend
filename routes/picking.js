@@ -6,10 +6,10 @@ router.get('/create', checkToken(), function(req, res, next) {
     var cart = JSON.parse(req.cookies.itemsCart);
 
     var RouteModel = require('../api/route/routeModel');
-    var User = require('../api/user/userModel.js');
+    var User = require('../api/user/userModel');
 
     console.log('Got here.');
-
+    console.log(req.cookies.itemsCart);
     User.findById(req.user._id).then(function(user) {
         try {
             var r = new RouteModel({
