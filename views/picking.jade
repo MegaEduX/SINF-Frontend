@@ -6,9 +6,9 @@ script(src='/js/picking.js')
 mixin linha(s)
   tr
     td #{s.order}
-    td #{s.item}
+    td.item-code #{s.item}
     td
-      a.btn.btn-xs.btn-danger(href="#", role='button' data-toggle='tooltip' data-placement='bottom' title='Delete') 
+      a.btn.btn-xs.btn-danger.btn-delete-single-item(href="#", role='button' data-toggle='tooltip' data-placement='bottom' title='Delete') 
         span.glyphicon.glyphicon-trash(aria-hidden='true')
 
 mixin actions(cod)

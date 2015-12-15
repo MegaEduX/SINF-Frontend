@@ -4,7 +4,7 @@ var cartCookieName = 'itemsCart';
 
 function removeFromArray(array, value) {
     var idx = array.indexOf(value);
-
+    
     if (idx !== -1)
         array.splice(idx, 1);
 
@@ -61,8 +61,7 @@ function removeFromCartCookie(item) {
 
     for (var i = 0, len = c.length; i < len; i++)
         if (c[i].order == document || c[i].item == item) {
-            removeFromArray(c[i], item);
-
+            c = removeFromArray(c, c[i]);
             Cookies.set(cartCookieName, c);
 
             updateCounter();
