@@ -130,6 +130,19 @@ a {
 tr.even {
 	background-color: #F9F9F9;
 }
+.datatable > thead tr:first-child > th {
+	border-bottom: 0px;
+}
+table.dataTable thead .sorting_asc::after {
+    content: "";
+    color: #FFF;
+    opacity: 1;
+}
+table.dataTable thead .sorting::after {
+	opacity: 0.5;
+	color: #FFF;
+	content: "";
+}
 
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before {
 	box-shadow: none;
