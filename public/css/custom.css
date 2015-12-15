@@ -207,8 +207,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
 	z-index: 2000;
 }
 
-/*  Sales Items */
- td.details-control:after {
+/*  SALES ITEMS */
+td.details-control:after {
     cursor: pointer;
     top: 8px;
 	left: 4px;
@@ -225,12 +225,14 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
 	content: "+";
 	background-color: #18BC9C;
 	margin: 0 auto;
- }
- tr.shown td.details-control:after {
+}
+tr.shown td.details-control:after {
 	content: "-";
 	background-color: #E74C3C;
-
- }
+}
+.pick-all-btn {
+	margin: 2px 0px 4px 2px;
+}
 /*
  *	USER INFO
  */ 

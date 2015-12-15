@@ -54,7 +54,7 @@ function pickAllFromSale(sale) {
 }
 
 function format(d) {
-    var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-xs btn-primary" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
+    var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-xs btn-primary pick-all-btn" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
               '<br /><table class="table no-footer subtable">' +
                 '<thead>' +
                     '<tr>' +
@@ -83,7 +83,7 @@ function format(d) {
         '</td><td>' + linhaDoc.PrecoUnitario +
         '</td><td>' + linhaDoc.Desconto +
         '</td><td>' + (linhaDoc.PrecoUnitario * linhaDoc.Quantidade - linhaDoc.Desconto) +
-        (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) ? '</td><td>' : '</td><td><a id="' + plusId + '" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("#' + plusId + '").hide(); return false;\'><span class="glyphicon glyphicon-plus"></span></a>') +
+        (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) ? '</td><td>' : '</td><td><a id="' + plusId + '" class="btn btn-xs btn-primary" title="Add" data-placement="bottom" data-toggle="tooltip" role="button" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("#' + plusId + '").hide(); return false;\'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>') +
         '</td></tr>';
 
         if (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo))
@@ -106,6 +106,7 @@ function format(d) {
 }
 
 $(document).ready(function() {
+    
     var expl = window.location.href.split("/");
 
     var ajax = null;
@@ -152,4 +153,5 @@ $(document).ready(function() {
             tr.addClass('shown');
         }
     } );
+    $('[data-toggle="tooltip"]').tooltip();
 } );
