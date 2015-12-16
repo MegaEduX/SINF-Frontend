@@ -15,14 +15,10 @@ function compareItems(a, b) {
     var y = b.warehouse.toLowerCase();
     var res =  x < y ? -1 : x > y ? 1 : 0;
     if (res == 0) { // items are in the same warehouse
-        console.log(a);
-        console.log(b);
         // if one item doesn't have properties, give advantage to another
         if (a.floor == undefined) {
-            console.log("a floor und");
             return 1;
         } else if (b.floor == undefined) {
-            console.log("b floor und");
             return -1;
         } else {
             // compare floors
@@ -72,42 +68,37 @@ function sortItems(items) {
             });
         }
     }
-    items.sort(function(a, b) {
-        var x = a.stock[0].warehouse.toLowerCase();
-        var y = b.stock[0].warehouse.toLowerCase();
-        var rez =  x < y ? -1 : x > y ? 1 : 0;
-        return rez;
-        /*
-        
-        */
+    // prepare each item for sorting    
+    var sortedItems = [];
+    for (i = 0; i < items.length; i++) {
+        for (var j = 0; j < items[i].stock.length; j++) {
+            items[i].stock[j].item = items[i].item;
+            items[i].stock[j].order = items[i].order; 
+
+            // if first stock item has enough quantity
+            // we don't need same item from other location
+            if (items[i].needed <= items[i].stock[j].quantity) {  
+                items[i].stock[j].needed = items[i].needed;
+                items[i].needed -= 0;
+                sortedItems.push(items[i].stock[j]);
+                break;
+            } else if (items[i].needed > 0) {
+                items[i].stock[j].needed = items[i].stock[j].quantity;
+                items[i].needed -= items[i].stock[j].quantity;
+                sortedItems.push(items[i].stock[j]);
+            }
+        }
+    }
+
+    sortedItems.sort(function(a, b) {
+        return compareItems(a, b);
     });
 
-    for (var i = 0; i < items.length; i++) {
-        //console.log(items[i]);
-    }
-
-    return items;
-    /*
-    if(isNumericSort) {
-        sortable.sort(function(a, b) {
-            return a[1] - b[1];
-        });
-    } else {
-        sortable.sort(function(a, b) {
-            var x = a[1].toLowerCase(),
-                y = b[1].toLowerCase();
-            return x < y ? -1 : x > y ? 1 : 0;
-        });
-    }
-    */
+    return sortedItems;
     
 }
 
 function createPickingRoute(items) {
-    for (var i = 0; i < items.length; i++) {
-        //console.log(items[i]);
-        items[i].id = i;
-    }
     return sortItems(items);
 }
 
@@ -227,16 +218,12 @@ router.get('/create', checkToken(), function(req, res, next) {
             items = temp;
             // create picking route - item sorting
             var sortedItems = createPickingRoute(items);
-            console.log("sorted items");
-            for (var i = 0; i < sortedItems.length; i++) {
-                console.log(sortedItems[i]);
-            }
-            /*
+            
             User.findById(req.user._id).then(function(user) {
                 try {
                     var r = new RouteModel({
                         username: user.username,
-                        objects: cart,
+                        objects: sortedItems,
                         picked: [],
                         date: Date.now()
                     });
@@ -252,7 +239,7 @@ router.get('/create', checkToken(), function(req, res, next) {
                     }
                 });
             });
-            */ 
+            
         });
     });
 
