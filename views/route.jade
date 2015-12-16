@@ -1,23 +1,21 @@
 extends layout
 include templates/navbar
-
 script(src='/js/picking.js')
 
-mixin linha(s)
+mixin showItem(i)
   tr
-    td -- TBD --
-    td -- TBD --
-    td #{s.item}
-    td #{s.order}
+    td #{i.item}
+    td #{i.warehouse}
+    td #{i.floor}
+    td #{i.corridor}
+    td #{i.section}
+    td #{i.lot}
+    td #{i.needed}
+    td #{i.order}
     td
       a.btn.btn-xs.btn-danger(href="#") Remove
 
-mixin actions(cod)
-  a(href='#', onclick='removeFromShoppingCart("#{cod}"); return false;')
-    span.glyphicon.glyphicon-plus(aria-hidden="true")
-
 block content
-  script(src='/js/picking.js')
   +nav(title, level)
   div.container
     .content-wrapper
@@ -26,16 +24,15 @@ block content
       table.table.table-stripped.table-bordered
         thead
           tr
+            th Item
             th Warehouse
+            th Floor
+            th Corridor
             th Section
-            th Code
+            th Lot
             th Quantity
+            th Order Code
             th Action
         tbody(id='pickingTable')
-          each val in toPick
-            +linha(val)
-      a.btn.btn-success(href="/picking/create") Create Picking Route
-      span &nbsp; &nbsp;
-      a.btn.btn-danger(href="#" id="deleteAll") Delete All Items
-      br
-      br
+          each item in route.objects
+            +showItem(item)

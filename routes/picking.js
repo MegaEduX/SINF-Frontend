@@ -191,7 +191,6 @@ router.get('/create', checkToken(), function(req, res, next) {
                     var sale = JSON.parse(body);
                     //console.log(sale);
                     for (var i = 0; i < sale.LinhasDoc.length; i++) {
-                        console.log(sale.NumDoc, sale.LinhasDoc[i].CodArtigo, sale.LinhasDoc[i].Quantidade);
                         // update items with needed quantity
                         for (var j = 0; j < items.length; j++) {
                             if (items[j].order == sale.NumDoc && items[j].item == sale.LinhasDoc[i].CodArtigo) {
