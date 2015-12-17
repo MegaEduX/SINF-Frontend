@@ -68,16 +68,17 @@ function sortItems(items) {
             });
         }
     }
-    // prepare each item for sorting    
+    // prepare each item for sorting
     var sortedItems = [];
     for (i = 0; i < items.length; i++) {
         for (var j = 0; j < items[i].stock.length; j++) {
             items[i].stock[j].item = items[i].item;
-            items[i].stock[j].order = items[i].order; 
+            items[i].stock[j].order = items[i].order;
+            items[i].stock[j].picked = false;
 
             // if first stock item has enough quantity
             // we don't need same item from other location
-            if (items[i].needed <= items[i].stock[j].quantity) {  
+            if (items[i].needed <= items[i].stock[j].quantity) {
                 items[i].stock[j].needed = items[i].needed;
                 items[i].needed -= 0;
                 sortedItems.push(items[i].stock[j]);
@@ -95,7 +96,7 @@ function sortItems(items) {
     });
 
     return sortedItems;
-    
+
 }
 
 function createPickingRoute(items) {
@@ -104,7 +105,7 @@ function createPickingRoute(items) {
 
 
 router.get('/create', checkToken(), function(req, res, next) {
-    
+
     // WARNING - today manipulation is just for debuging purpouse
     var today = new Date();
     today.setDate(today.getDate() - 14); // today - 14 days
@@ -120,7 +121,7 @@ router.get('/create', checkToken(), function(req, res, next) {
 
     async.eachSeries(urls, function(url, next) {
 
-        request(url, function (error, response, body) {    
+        request(url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 // stock array
                 var stocks = JSON.parse(body);
@@ -141,7 +142,7 @@ router.get('/create', checkToken(), function(req, res, next) {
 
                         temp.quantity = stockQuantity;
                         temp.lot = stocks[i].Lote.replace("<", "").replace(">", "");
-                        
+
                         // get warehouse, corridor, floor and section location of the item
                         var p = stocks[i].Localizacao.split(".");
                         if (p[0] != undefined) {
@@ -164,7 +165,7 @@ router.get('/create', checkToken(), function(req, res, next) {
                 }
                 items.push(cartItem);
                 next();
-            } else { 
+            } else {
                 next(error);
             }
         }); // request
@@ -186,7 +187,7 @@ router.get('/create', checkToken(), function(req, res, next) {
             urls.push(config.primavera.url + 'Sales/' + saleIds[i]);
         }
         async.eachSeries(urls, function(url, next) {
-            request(url, function (error, response, body) {    
+            request(url, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var sale = JSON.parse(body);
                     //console.log(sale);
@@ -198,9 +199,9 @@ router.get('/create', checkToken(), function(req, res, next) {
                                 break;
                             }
                         }
-                    }  
+                    }
                     next();
-                } else { 
+                } else {
                     next(error);
                 }
             }); // request
@@ -217,13 +218,12 @@ router.get('/create', checkToken(), function(req, res, next) {
             items = temp;
             // create picking route - item sorting
             var sortedItems = createPickingRoute(items);
-            
+
             User.findById(req.user._id).then(function(user) {
                 try {
                     var r = new RouteModel({
                         username: user.username,
                         objects: sortedItems,
-                        picked: [],
                         date: Date.now()
                     });
                 } catch (e) {
@@ -238,7 +238,7 @@ router.get('/create', checkToken(), function(req, res, next) {
                     }
                 });
             });
-            
+
         });
     });
 

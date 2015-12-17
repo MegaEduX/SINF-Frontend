@@ -24,6 +24,13 @@ mixin nav(active, level)
           else
             li
               a(href='/sales') Sales
+          
+          if (active == 'Invoices')
+            li.active
+              a(href='/invoices') Invoices
+          else
+            li
+              a(href='/invoices') Invoices
 
           if (active == 'Routes')
             li.active

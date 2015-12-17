@@ -1,0 +1,26 @@
+extends layout
+include templates/navbar
+
+mixin sale(s)
+  tr(data-toggle="collapse", data-target=s, class="accordion-toggle")
+    td #{s.Entidade}
+    td #{s.Data}
+    td(style="display: block; page-break-before: always;") #{s.TotalMerc}
+    td #{s.Serie}
+    td
+      +actions(s.NumDoc)
+
+block content
+  script(src='/js/invoices.js')
+  +nav(title, level)
+  div.container
+    .content-wrapper
+      h1= title
+      table.table.table-stripped.table-bordered(id="salesTable")
+        thead
+          tr
+            th
+            th Customer
+            th Sale Date
+            th Total
+            th Series

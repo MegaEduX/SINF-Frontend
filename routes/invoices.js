@@ -6,8 +6,6 @@ var config = require('../config/config');
 var request = require('request');
 var moment = require('moment');
 
-var RouteModel = require('../api/route/routeModel');
-
 function parseDates(salesObject) {
     for (var i in salesObject) {
         var date = moment(salesObject[i].Data);
@@ -77,49 +75,7 @@ router.get('/json', checkToken(), function(req, res, next) {
 
             parseDates(obj);
 
-            RouteModel.find().exec(function(err, routes) {
-                if (err == null) {
-                    console.log("Ha!");
-                    
-                    var picked = [];
-
-                    for (var idx in routes) {
-                        var route = routes[idx];
-
-                        for (var objIdx in route.objects)
-                            if (route.objects[objIdx].picked == true) {
-                                var order = route.objects[objIdx].order;
-                                var item = route.objects[objIdx].item;
-
-                                picked.push({"order": order, "item": item});
-                            }
-                    }
-
-                    for (var saleIdx in obj) {
-                        var sale = obj[saleIdx];
-
-                        for (var pickedIdx in picked) {
-                            var pair = picked[pickedIdx];
-
-                            if (pair.order == sale.NumDoc) {
-                                //  match!
-
-                                for (var saleItemsIdx in sale.LinhasDoc) {
-                                    if (sale.LinhasDoc[saleItemsIdx].codArtigo == pair.item) {
-                                        obj[saleIdx].LinhasDoc[saleItemsIdx].picked = true;
-
-                                        console.log("Marked as picked: " + obj[saleIdx].LinhasDoc[saleItemsIdx]);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    res.send(JSON.stringify({"data": obj}));
-                } else {
-                    //  Handle Error!
-                }
-            });
+            res.send(JSON.stringify({"data": obj}));
         } else {
             var testObj = [
                 {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},
@@ -141,7 +97,7 @@ router.get('/', checkToken(), function(req, res, next) {
 
             parseDates(obj);
 
-            res.render('sales', { title: 'Sales', sales: obj });
+            res.render('invoices', { title: 'Invoices', sales: obj });
         } else {
             var testObj = [
                 {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},

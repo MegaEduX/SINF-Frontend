@@ -11,10 +11,6 @@ var RouteSchema = new Schema({
       type: Schema.Types.Mixed,
       required: true
   },
-  picked: {
-      type: Schema.Types.Mixed,
-      required: true
-  },
   date: {
       type: Date,
       required: true

@@ -27,6 +27,22 @@ router.get('/', checkToken(), function(req, res, next) {
     User.findById(req.user._id).then(function(user) {
         RouteModel.find({username: user.username}).exec(function(err, routes) {
             if (err == null) {
+                for (var idx in routes) {
+                    var route = routes[idx];
+
+                    var picked = 0;
+
+                    for (var objIdx in route.objects)
+                        if (route.objects[objIdx].picked == true)
+                            picked++;
+
+                    routes[idx].picked = picked;
+
+                    console.log("Picked:" + picked);
+
+                    console.log(routes);
+                }
+
                 res.render('routes', { title: 'Routes', level: req.user.level, routes: routes });
             } else {
                 //  Handle Error!
