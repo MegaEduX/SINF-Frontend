@@ -131,26 +131,18 @@ router.get('/json', checkToken(), function(req, res, next) {
 
             RouteModel.find().exec(function(err, routes) {
                 if (err == null) {
-                    console.log("Ha!");
-
                     var picked = [];
 
                     for (var idx in routes) {
                         var route = routes[idx];
 
-                        for (var objIdx in route.objects)
-                            //  if (route.objects[objIdx].picked == true) {
-                            {
-                                var order = route.objects[objIdx].order;
-                                var item = route.objects[objIdx].item;
+                        for (var objIdx in route.objects) {
+                            var order = route.objects[objIdx].order;
+                            var item = route.objects[objIdx].item;
 
-                                picked.push({"order": order, "item": item});
-                            //  }
-                            }
+                            picked.push({"order": order, "item": item});
+                        }
                     }
-
-                    console.log("What's picked?");
-                    console.log(picked);
 
                     for (var saleIdx in obj) {
                         var sale = obj[saleIdx];
@@ -158,22 +150,10 @@ router.get('/json', checkToken(), function(req, res, next) {
                         for (var pickedIdx in picked) {
                             var pair = picked[pickedIdx];
 
-                            if (pair.order == sale.NumDoc) {
-                                //  match!
-
-                                console.log("Match!");
-
-                                for (var saleItemsIdx in sale.LinhasDoc) {
-                                    console.log("CodArtigo: " + sale.LinhasDoc[saleItemsIdx].CodArtigo);
-                                    console.log("pair.item: " + pair.item);
-
-                                    if (sale.LinhasDoc[saleItemsIdx].CodArtigo == pair.item) {
+                            if (pair.order == sale.NumDoc)
+                                for (var saleItemsIdx in sale.LinhasDoc)
+                                    if (sale.LinhasDoc[saleItemsIdx].CodArtigo == pair.item)
                                         obj[saleIdx].LinhasDoc[saleItemsIdx].picked = true;
-
-                                        console.log("Marked as picked: " + obj[saleIdx].LinhasDoc[saleItemsIdx]);
-                                    }
-                                }
-                            }
                         }
                     }
 
@@ -195,25 +175,7 @@ router.get('/json', checkToken(), function(req, res, next) {
 });
 
 router.get('/', checkToken(), function(req, res, next) {
-    request(config.primavera.url + 'Sales', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var obj = JSON.parse(body);
-
-            console.log("Returning " + obj + "...");
-
-            parseDates(obj);
-
-            res.render('sales', { title: 'Sales', sales: obj });
-        } else {
-            var testObj = [
-                {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},
-                {"Entidade": "FERNANDO", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},
-                {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]}
-            ];
-
-            res.render('sales', { title: 'Sales', level: req.user.level, sales: testObj });
-        }
-    });
+    res.render('sales', { title: 'Sales', level: req.user.level });
 });
 
 router.get('/:client', checkToken(), function(req, res, next) {
@@ -230,14 +192,10 @@ router.get('/:client', checkToken(), function(req, res, next) {
                 if (obj[i]["Entidade"] == req.params.client) {
                     filterObj[j] = obj[i];
                     j++;
-
-                    console.log("Adding to filterObj with entity " + obj[i]["Entidade"]);
                 }
             }
 
             parseDates(filterObj);
-
-            console.log("Returning " + filterObj + "...");
 
             res.render('sales', { title: 'Sales', level: req.user.level, sales: filterObj });
         } else {

@@ -11,6 +11,9 @@ mixin sale(s)
       +actions(s.NumDoc)
 
 block content
+  if (level == 1 || level == 2)
+    script.
+      var modOrAdmin = true;
   script(src='/js/sales.js')
   +nav(title, level)
   div.container

@@ -61,6 +61,9 @@ function pickAllFromSale(sale) {
 
 function format(d) {
     var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-xs btn-primary pick-all-btn" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
+              '<a href="#" id="generateInvoice-' + d.NumDoc + '" class="btn btn-xs btn-primary pick-all-btn" onclick="generateInvoice(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Generate Invoice">Generate Invoice</a>' +
+              '<span id="generated-' + d.NumDoc + '">An invoice has already been generated for this sale order!</span>' +
+              '<span id="loading-' + d.NumDoc + '">Loading invoice status...</span>' +
               '<br /><table class="table no-footer subtable">' +
                 '<thead>' +
                     '<tr>' +
@@ -98,15 +101,44 @@ function format(d) {
             rem--;
     });
 
-    console.log(rem);
-
-    if (rem == 0) {
+    if (rem == 0)
         setTimeout(function() {
             $("#pickAll-" + d.NumDoc).hide();
+            $("#generateInvoice-" + d.NumDoc).hide();
+            $("#generated-" + d.NumDoc).hide();
+            $("#loading-" + d.NumDoc).hide();
 
-            console.log("Hid element " + "#pickAll-" + d.NumDoc);
+            if (modOrAdmin) {
+                $("#loading-" + d.NumDoc).show();
+
+                var ajax = getXMLHTTP();
+
+                ajax.onreadystatechange = function() {
+                    console.log("Ready state: " + ajax.readyState);
+                    console.log("Status: " + ajax.status);
+
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        var json = JSON.parse(ajax.responseText);
+
+                        if (json.result)
+                            $("#generated-" + d.NumDoc).show();
+                        else
+                            $("#generateInvoice-" + d.NumDoc).show();
+
+                        $("#loading-" + d.NumDoc).hide();
+                    }
+                };
+
+                ajax.open("GET", "/invoices/" + d.NumDoc + "/json", true);
+                ajax.send();
+            }
         }, 1);
-    }
+    else
+        setTimeout(function() {
+            $("#loading-" + d.NumDoc).hide();
+            $("#generateInvoice-" + d.NumDoc).hide();
+            $("#generated-" + d.NumDoc).hide();
+        }, 1);
 
     ret += '</table>';
 

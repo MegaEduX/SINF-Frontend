@@ -24,13 +24,6 @@ mixin nav(active, level)
           else
             li
               a(href='/sales') Sales
-          
-          if (active == 'Invoices')
-            li.active
-              a(href='/invoices') Invoices
-          else
-            li
-              a(href='/invoices') Invoices
 
           if (active == 'Routes')
             li.active
@@ -59,13 +52,13 @@ mixin nav(active, level)
             else
               li
                 a(href='/users') Users
-          if (level == 2)
-            if (active == 'Receipts')
+          if (level == 1 || level == 2)
+            if (active == 'Invoices')
               li.active
-                a(href='/receipts') Receipts
+                a(href='/invoices') Invoices
             else
               li
-                a(href='/receipts') Receipts
+                a(href='/invoices') Invoices
         ul.nav.navbar-nav.navbar-right
           if (active == 'Picking')
             li.active
