@@ -91,10 +91,10 @@ function format(d) {
         '</td><td>' + linhaDoc.PrecoUnitario +
         '</td><td>' + linhaDoc.Desconto +
         '</td><td>' + (linhaDoc.PrecoUnitario * linhaDoc.Quantidade - linhaDoc.Desconto) +
-        (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) ? '</td><td>' : '</td><td><a id="' + plusId + '" class="btn btn-xs btn-primary" title="Add" data-placement="bottom" data-toggle="tooltip" role="button" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("#' + plusId + '").hide(); return false;\'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>') +
+        (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) || linhaDoc.picked ? '</td><td>' : '</td><td><a id="' + plusId + '" class="btn btn-xs btn-primary" title="Add" data-placement="bottom" data-toggle="tooltip" role="button" name="addButton" href="#" onclick=\'addToShoppingCart(' + d.NumDoc + ', "' + linhaDoc.CodArtigo + '"); $("#' + plusId + '").hide(); return false;\'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>') +
         '</td></tr>';
 
-        if (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo))
+        if (existsInCartCookie(d.NumDoc, linhaDoc.CodArtigo) || linhaDoc.picked)
             rem--;
     });
 
