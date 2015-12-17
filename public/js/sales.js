@@ -196,7 +196,7 @@ $(document).ready(function() {
             { "data": "TotalMerc" },
             { "data": "Serie" }
         ],
-        "order": [[1, 'asc']],
+        "order": [[2, 'desc']],
         oLanguage: {
             sSearch: '<span class="glyphicon glyphicon-search"></span>'
         }

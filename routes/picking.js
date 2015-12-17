@@ -132,11 +132,9 @@ router.get('/create', checkToken(), function(req, res, next) {
                     if (stockQuantity != NaN && stockQuantity > 0) {
                         var temp = {};
                         temp.expirationDate = new Date(stocks[i].DataValidade);
-                        /*
                         if (temp.expirationDate < today) {
                             continue; // just ignore this item
-                        }
-                        */
+                        }                       
 
                         temp.quantity = stockQuantity;
                         temp.lot = stocks[i].Lote.replace("<", "").replace(">", "");
