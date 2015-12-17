@@ -31,9 +31,24 @@ function parseDates(salesObject) {
 }
 
 router.get('/:numDoc/json', checkToken(), function(req, res, next) {
-    console.log("Called client json method.");
-
     request(config.primavera.url + 'Invoices/' + req.params.numDoc, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var obj = JSON.parse(body);
+
+            res.send(JSON.stringify({"result": obj}));
+        } else {
+            res.send(JSON.stringify({"result": false}));
+        }
+    });
+});
+
+router.post('/:numDoc', checkToken(), function(req, res, next) {
+    console.log("Creating invoice... ZzZzzzZZZzzz...");
+
+    request.post(config.primavera.url + 'Invoices/' + req.params.numDoc, function (error, response, body) {
+        console.log(response);
+        console.log(config.primavera.url + 'Invoices/' + req.params.numDoc);
+
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 

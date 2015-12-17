@@ -59,6 +59,28 @@ function pickAllFromSale(sale) {
     console.log("Picking all from sale " + sale + "...");
 }
 
+function generateInvoice(sale) {
+    var ajax = getXMLHTTP();
+
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var json = JSON.parse(ajax.responseText);
+
+            console.log("Answer: " + json);
+
+            $("#generateInvoice-" + sale).hide();
+            $("#generated-" + sale).show();
+        }
+    };
+
+    ajax.open("POST", "/invoices/" + sale, true);
+    ajax.send();
+
+    $("#generateInvoice-" + sale).attr('disabled', 'disabled');
+
+    console.log("Generating invoice for " + sale + "...");
+}
+
 function format(d) {
     var ret = '<a href="#" id="pickAll-' + d.NumDoc + '" class="btn btn-xs btn-primary pick-all-btn" onclick="pickAllFromSale(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Pick All">Pick All</a>' +
               '<a href="#" id="generateInvoice-' + d.NumDoc + '" class="btn btn-xs btn-primary pick-all-btn" onclick="generateInvoice(' + d.NumDoc + '); return false;" role="button" data-toggle="tooltip" data-placement="bottom" title="Generate Invoice">Generate Invoice</a>' +
