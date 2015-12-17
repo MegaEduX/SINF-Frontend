@@ -96,7 +96,6 @@ function sortItems(items) {
     });
 
     return sortedItems;
-
 }
 
 function createPickingRoute(items) {
@@ -120,7 +119,6 @@ router.get('/create', checkToken(), function(req, res, next) {
     }
 
     async.eachSeries(urls, function(url, next) {
-
         request(url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 // stock array

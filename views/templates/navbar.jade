@@ -17,34 +17,37 @@ mixin nav(active, level)
           else
             li
               a(href='/') Home
-
+          
           if (active == 'Sales')
             li.active
               a(href='/sales') Sales
           else
             li
               a(href='/sales') Sales
-
-          if (active == 'Routes')
-            li.active
-              a(href='/routes') Routes
-          else
-            li
-              a(href='/routes') Routes
-
-          if (active == 'Warehouses')
-            li.active
-              a(href='/warehouses') Warehouses
-          else
-            li
-              a(href='/warehouses') Warehouses
-
+              
+          if (level <= 1)
+            if (active == 'Routes')
+              li.active
+                a(href='/routes') Routes
+            else
+              li
+                a(href='/routes') Routes
+          
+          if (level <= 1)
+            if (active == 'Warehouses')
+              li.active
+                a(href='/warehouses') Warehouses
+            else
+              li
+                a(href='/warehouses') Warehouses
+          
           if (active == 'Customers')
             li.active
               a(href='/customers') Customers
           else
             li
               a(href='/customers') Customers
+        
           if (level == 1)
             if (active == 'Users')
               li.active
@@ -52,6 +55,7 @@ mixin nav(active, level)
             else
               li
                 a(href='/users') Users
+                
           if (level == 1 || level == 2)
             if (active == 'Invoices')
               li.active
@@ -59,13 +63,15 @@ mixin nav(active, level)
             else
               li
                 a(href='/invoices') Invoices
+        
         ul.nav.navbar-nav.navbar-right
-          if (active == 'Picking')
-            li.active
-              a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
-          else
-            li
-              a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
+          if (level <= 1)
+            if (active == 'Picking')
+              li.active
+                a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
+            else
+              li
+                a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
           li
             a#userProfileBtn(href='/user')
               span.hide-on-tablet-view.glyphicon.glyphicon-user(data-toggle='tooltip' data-placement='bottom' title='User profile')
