@@ -56,6 +56,15 @@ a {
 .navbar-nav .glyphicon-user, .navbar-nav .glyphicon-log-out {
 	top: 4px;
 } 
+.picking-nav-icon {
+	float: left;
+	top: 4px;
+	margin-right: 5px;
+}
+.picking-item-wrapper {
+	display: inline;
+	float: left;
+}
 
 /*
  *	LOGIN

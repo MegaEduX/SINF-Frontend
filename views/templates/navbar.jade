@@ -68,10 +68,14 @@ mixin nav(active, level)
           if (level <= 1)
             if (active == 'Picking')
               li.active
-                a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
+                a(href='/picking')
+                  span.picking-nav-icon.hide-on-tablet-view.glyphicon.glyphicon-list-alt(data-toggle='tooltip' data-placement='bottom' title='Picking items') 
+                  span.picking-item-wrapper (#[span(id='pickingItemCount') 0])
             else
               li
-                a(href='/picking') Picking Items (#[span(id='pickingItemCount') 0])
+                a(href='/picking') 
+                  span.picking-nav-icon.hide-on-tablet-view.glyphicon.glyphicon-list-alt(data-toggle='tooltip' data-placement='bottom' title='Picking items') 
+                  span.picking-item-wrapper (#[span(id='pickingItemCount') 0])
           li
             a#userProfileBtn(href='/user')
               span.hide-on-tablet-view.glyphicon.glyphicon-user(data-toggle='tooltip' data-placement='bottom' title='User profile')
