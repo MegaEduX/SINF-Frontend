@@ -230,6 +230,7 @@ router.get('/create', checkToken(), function(req, res, next) {
 
                 r.save(function(err, route) {
                     if (err == null) {
+                        res.clearCookie('itemsCart');
                         res.redirect('/routes/' + route.id);
                     } else {
                         console.log(err);

@@ -31,7 +31,7 @@ block content
         tbody(id='pickingTable')
           each val in toPick
             +linha(val)
-      a.btn.btn-success(href="/picking/create") 
+      a.btn.btn-success.btn-create-route(href="/picking/create") 
         span.glyphicon.glyphicon-ok(aria-hidden='true')
         span.btn-text Create Picking Route
       span &nbsp; &nbsp;
