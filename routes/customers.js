@@ -11,7 +11,7 @@ router.get('/', checkToken(), function(req, res, next) {
 
             console.log("Returning " + obj + "...");
 
-            res.render('customers', { title: 'Customers', customers: obj });
+            res.render('customers', { title: 'Customers', customers: obj, level: req.user.level });
         } else {
             var testObj = [
                 {"Morada": "Av. dos Coqueiros", "CodCliente" : "INFORSHOW", "NomeCliente": "Inforshow, Informática Comunicação", "Moeda": "EUR", "NumContribuinte": "123456789"}
