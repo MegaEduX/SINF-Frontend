@@ -25,7 +25,11 @@ exports.checkToken = function() {
       req.headers.authorization = 'Bearer ' + req.cookies.access_token;
     }
     // check token. If invalid, send 401
-    checkJwt(req, res, next);
+    try {
+      checkJwt(req, res, next);
+    } catch(e) {
+      res.status(401).send('Unauthorized');
+    }
   }
 }
 

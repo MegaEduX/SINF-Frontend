@@ -38,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', index);
 app.use('/api', api);
 app.use('/login', login);
@@ -65,6 +66,7 @@ app.use(function(err, req, res, next) {
     res.redirect('/login');
   }
 });
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
