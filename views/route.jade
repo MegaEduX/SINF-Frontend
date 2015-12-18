@@ -10,8 +10,8 @@ mixin showItem(i)
     td #{i.section}
     td #{i.lot}
     td #{i.needed}
-    td #{i.order}
-    td
+    td.order-id #{i.order}
+    td.action
       a.btn.btn-xs.btn-success.btn-done-picking-item(href="#") 
         span.glyphicon.glyphicon-ok
         span.btn-text Done
@@ -22,7 +22,7 @@ block content
     .content-wrapper
       h1= title
       br
-      table.table.table-stripped.table-bordered
+      table#routePickingTable.table.table-stripped.table-bordered
         thead
           tr
             th Item

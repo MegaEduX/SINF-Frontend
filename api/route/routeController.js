@@ -25,6 +25,7 @@ exports.put = function(req, res, next) {
 
   var item = req.body.item;
   var picked = req.body.picked;
+  var order = req.body.order;
 
   if (item != undefined && picked != undefined) {
     // i know, looks dirty, it is! Damn js!
@@ -34,7 +35,7 @@ exports.put = function(req, res, next) {
       picked = false;
     }
     for (var i = 0; i < route.objects.length; i++) {
-      if (route.objects[i].item == item) {
+      if (route.objects[i].item == item && route.objects[i].order == order) {
         route.objects[i].picked = picked;
         route.markModified("objects");
         route.save(function(err, saved) {

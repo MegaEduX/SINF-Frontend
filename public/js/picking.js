@@ -30,13 +30,34 @@ $(document).ready(function() {
 		location.reload();
 	});
 
-
+	var routeTable = $("#routePickingTable");
+	if (routeTable.length > 0) {
+		// item status update
+		var routeId = window.location.pathname.split("/")[2];
+		$.ajax({
+			url: "/api/routes/" + routeId,
+			type: "GET",
+			success: function(returnData) {
+				var items = JSON.parse(JSON.stringify(returnData)).objects;
+				var rows = $(".item-id"); 
+				for (var i = 0; i < items.length; i++) {
+					var btn = $(rows[i]).siblings(".action").children("a");
+					if (items[i].picked) {
+						setBtnToUndo(btn);
+					} else {
+						setBtnToDone(btn);
+					}
+				}
+			}
+		});
+	}
 	
 	$(".btn-done-picking-item").click(function(e) {
 		e.preventDefault();
 		
 		var routeId = window.location.pathname.split("/")[2];
 		var item = $(this).parent().siblings(".item-id").text();
+		var order = $(this).parent().siblings(".order-id").text();
 		var picked = false;
 	
 		if ($(this).hasClass("btn-success")) {
@@ -49,7 +70,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/api/routes/" + routeId,
 			type: "PUT",
-			data: "item=" + item + "&picked=" + picked,
+			data: "item=" + item + "&picked=" + picked + "&order=" + order,
 			success: function(returnData) {
 				console.log(returnData);
 			}
