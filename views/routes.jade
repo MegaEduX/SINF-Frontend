@@ -5,7 +5,10 @@ mixin route(s)
 	tr
 		td #{s.date}
 		td #{s.objects.length}
-		td #{s.picked}
+		if (s.finished)
+			td Finished
+		else
+			td In progress
 		td
 			+actions(s.id)
 
@@ -24,7 +27,7 @@ block content
 					tr
 						th Creation Date
 						th Item Count
-						th Picked Count
+						th Status
 						th Action
 				tbody
 					each val in routes
