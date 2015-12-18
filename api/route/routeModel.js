@@ -14,6 +14,10 @@ var RouteSchema = new Schema({
   date: {
       type: Date,
       required: true
+  },
+  finished: {
+    type: Boolean,
+    default: false
   }
 });
 
