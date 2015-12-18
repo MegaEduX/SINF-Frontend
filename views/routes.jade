@@ -14,7 +14,7 @@ mixin route(s)
 
 mixin actions(route)
 	a.btn.btn-xs.btn-primary(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')
-		span.glyphicon.glyphicon-random(aria-hidden='true')
+		span.glyphicon.glyphicon-edit(aria-hidden='true')
 
 block content
 	+nav(title, level)
