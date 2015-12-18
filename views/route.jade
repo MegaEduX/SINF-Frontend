@@ -1,6 +1,5 @@
 extends layout
 include templates/navbar
-script(src='/js/picking.js')
 
 mixin showItem(i)
   tr
@@ -13,7 +12,9 @@ mixin showItem(i)
     td #{i.needed}
     td #{i.order}
     td
-      a.btn.btn-xs.btn-danger(href="#") Remove
+      a.btn.btn-xs.btn-success.btn-done-picking-item(href="#") 
+        span.glyphicon.glyphicon-ok
+        span.btn-text Done
 
 block content
   +nav(title, level)
@@ -36,3 +37,7 @@ block content
         tbody(id='pickingTable')
           each item in route.objects
             +showItem(item)
+      button.btn.btn-success.btn-confirm-picking(href="#" disabled="") 
+        span.glyphicon.glyphicon-ok(aria-hidden='true')
+        span.btn-text Confirm
+  script(src='/js/picking.js')

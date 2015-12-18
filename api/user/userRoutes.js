@@ -3,7 +3,7 @@ var controller = require('./userController');
 var auth = require('../auth/auth');
 var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
-// setup boilerplate route jsut to satisfy a request
+// setup boilerplate route just to satisfy a request
 // for building
 router.param('id', controller.params);
 router.get('/me', checkUser, controller.me);
