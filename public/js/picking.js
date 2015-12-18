@@ -16,6 +16,14 @@ function setBtnToDone(obj) {
 	glyph.removeClass("glyphicon-remove");
 	glyph.addClass("glyphicon-ok");
 }
+function checkConfirmBtn() {
+	//if all items are done, enabled confirm
+	if ($("#pickingTable .btn-success").length > 0) {
+		$(".btn-confirm-picking").attr("disabled", true);
+	} else {
+		$(".btn-confirm-picking").attr("disabled", false);
+	}
+}
 
 $(document).ready(function() {
 	$("#deleteAll").click(function() {
@@ -48,6 +56,7 @@ $(document).ready(function() {
 						setBtnToDone(btn);
 					}
 				}
+				checkConfirmBtn();
 			}
 		});
 	}
@@ -75,11 +84,22 @@ $(document).ready(function() {
 				console.log(returnData);
 			}
 		});
-		//if all items are done, enabled confirm
-		if ($("#pickingTable .btn-success").length > 0) {
-			$(".btn-confirm-picking").attr("disabled", true);
-		} else {
-			$(".btn-confirm-picking").attr("disabled", false);
-		}
+		checkConfirmBtn();
+		
+	});
+
+	$(".btn-confirm-picking").click(function(e) {
+		$("#pickingConfirm").modal();
+	});
+	$("#btnConfirmPicking").click(function(e) {
+		$.ajax({
+			url: "/api/routes/" + routeId,
+			type: "PUT",
+			data: "finished=true",
+			success: function(returnData) {
+				console.log(returnData);
+				window.location = "/routes";
+			}
+		});
 	});
 });

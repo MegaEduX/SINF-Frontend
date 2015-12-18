@@ -48,6 +48,23 @@ exports.put = function(req, res, next) {
         break;      
       }
     }
+  } else {
+    var finished = req.body.finished;
+    if (finished != undefined) {
+      if (finished.toLowerCase() == "true") {
+        finished = true;
+      } else {
+        finished = false;
+      }  
+    }
+    route.finished = finished;
+    route.save(function(err, saved) {
+      if (err) {
+        next(err);
+      } else {
+        res.json(saved);
+      }
+    });
   }
 };
 

@@ -40,4 +40,21 @@ block content
       button.btn.btn-success.btn-confirm-picking(href="#" disabled="") 
         span.glyphicon.glyphicon-ok(aria-hidden='true')
         span.btn-text Confirm
+
+  div#pickingConfirm.modal.fade(tabindex="-1" role="dialog")
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          button.close(type="button" data-dismiss="modal" aria-label="Close") 
+            span(aria-hidden="true") &times; 
+          h4.modal-title Access level
+          input#accessLevelNum(type="hidden")
+          input#accessUserId(type="hidden")
+
+        div.modal-body
+          span Are you sure that you're done with this picking route?
+        div.modal-footer
+          button.btn.btn-danger(type="button" data-dismiss="modal") No
+          button#btnConfirmPicking.btn.btn-success(type="button" data-dismiss="modal") Yes
   script(src='/js/picking.js')
+
