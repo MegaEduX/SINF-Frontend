@@ -3,7 +3,6 @@ var router = express.Router();
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-  console.log("rad");
   res.render('login', { title: 'Log in' });
 });
 
