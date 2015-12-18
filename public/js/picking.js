@@ -1,3 +1,22 @@
+function setBtnToUndo(obj) {
+	$(obj).removeClass("btn-success");
+	$(obj).addClass("btn-danger");
+	$(obj).children(".btn-text").text("Undo");
+			
+	var glyph = $(obj).children(".glyphicon-ok");
+	glyph.removeClass("glyphicon-ok");
+	glyph.addClass("glyphicon-remove");
+}
+function setBtnToDone(obj) {
+	$(obj).removeClass("btn-danger");
+	$(obj).addClass("btn-success");
+	$(obj).children(".btn-text").text("Done");
+			
+	var glyph = $(obj).children(".glyphicon-remove");
+	glyph.removeClass("glyphicon-remove");
+	glyph.addClass("glyphicon-ok");
+}
+
 $(document).ready(function() {
 	$("#deleteAll").click(function() {
 		deleteCartCookie();
@@ -12,36 +31,33 @@ $(document).ready(function() {
 	});
 
 
+	
 	$(".btn-done-picking-item").click(function(e) {
 		e.preventDefault();
-		//design change
+		
+		var routeId = window.location.pathname.split("/")[2];
+		var item = $(this).parent().siblings(".item-id").text();
+		var picked = false;
+	
 		if ($(this).hasClass("btn-success")) {
-			
-			$(this).removeClass("btn-success");
-			$(this).addClass("btn-danger");
-			$(this).children(".btn-text").text("Undo");
-			
-			var glyph = $(this).children(".glyphicon-ok");
-			glyph.removeClass("glyphicon-ok");
-			glyph.addClass("glyphicon-remove");
-
+			picked = true;
+			setBtnToUndo(this);
 		} else if ($(this).hasClass("btn-danger")) {
-			
-			$(this).removeClass("btn-danger");
-			$(this).addClass("btn-success");
-			$(this).children(".btn-text").text("Done");
-			
-			var glyph = $(this).children(".glyphicon-remove");
-			glyph.removeClass("glyphicon-remove");
-			glyph.addClass("glyphicon-ok");
+			picked = false;
+			setBtnToDone(this);
 		}
-
+		$.ajax({
+			url: "/api/routes/" + routeId,
+			type: "PUT",
+			data: "item=" + item + "&picked=" + picked,
+			success: function(returnData) {
+				console.log(returnData);
+			}
+		});
 		//if all items are done, enabled confirm
 		if ($("#pickingTable .btn-success").length > 0) {
-			console.log("false");
 			$(".btn-confirm-picking").attr("disabled", true);
 		} else {
-			console.log("true");
 			$(".btn-confirm-picking").attr("disabled", false);
 		}
 	});
