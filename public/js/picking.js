@@ -46,17 +46,27 @@ $(document).ready(function() {
 			url: "/api/routes/" + routeId,
 			type: "GET",
 			success: function(returnData) {
-				var items = JSON.parse(JSON.stringify(returnData)).objects;
-				var rows = $(".item-id"); 
-				for (var i = 0; i < items.length; i++) {
-					var btn = $(rows[i]).siblings(".action").children("a");
-					if (items[i].picked) {
+				var route = JSON.parse(JSON.stringify(returnData));
+				var items = route.objects;
+				var rows = $(".item-id");
+				if (route.finished) {
+					for (var i = 0; i < items.length; i++) {
+						var btn = $(rows[i]).siblings(".action").children("button");
 						setBtnToUndo(btn);
-					} else {
-						setBtnToDone(btn);
+						btn.attr("disabled", true);
 					}
+					$(".btn-confirm-picking").attr("disabled", true);
+				} else {
+					for (var i = 0; i < items.length; i++) {
+						var btn = $(rows[i]).siblings(".action").children("button");
+						if (items[i].picked) {
+							setBtnToUndo(btn);
+						} else {
+							setBtnToDone(btn);
+						}
+					}
+					checkConfirmBtn();
 				}
-				checkConfirmBtn();
 			}
 		});
 	}
