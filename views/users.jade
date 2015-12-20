@@ -32,7 +32,10 @@ block content
 				tbody
 					each user in users
 						+user(user)
-	
+			#btnCreateUser.btn.btn-success(href="#") 
+				span.glyphicon.glyphicon-plus(aria-hidden='true')
+				span.btn-text Create New User
+
 	div#changeLevelConfirm.modal.fade(tabindex="-1" role="dialog")
 		div.modal-dialog
 			div.modal-content
@@ -53,4 +56,34 @@ block content
 				div.modal-footer
 					button.btn.btn-danger(type="button" data-dismiss="modal") No
 					button.btn.btn-success(type="button" data-dismiss="modal") Yes
+
+	div#newUserModal.modal.fade(tabindex="-1" role="dialog")
+		div.modal-dialog
+			div.modal-content
+				form#newUserForm
+					div.modal-header
+						button.close(type="button" data-dismiss="modal" aria-label="Close") 
+							span(aria-hidden="true") &times; 
+						h4.modal-title New user
+					div.modal-body
+						label.input-group(for="userName") Username:
+						input#userName.form-control(type="text" required="")
+
+						label.input-group(for="password") Password:
+						input#password.form-control(type="password" required="")
+						
+						label.input-group(for="level") Access level:
+						select#level.select-control(required="")
+							each l in levels
+								option(value="#{l.code}") #{l.name}
+
+						label.input-group(for="name") Name:
+						input#name.form-control(type="text" required="")
+						
+						label.input-group(for="surname") Surname:
+						input#surname.form-control(type="text" required="")
+						
+					div.modal-footer
+						button.btn.btn-danger(type="button" data-dismiss="modal") Cancel
+						button#btnConfirmNewUser.btn.btn-success(type="submit") Create
 

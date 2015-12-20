@@ -40,4 +40,46 @@ $(document).ready(function() {
 		});
 		$("#changeLevelConfirm").toggle();
 	});
+
+	// create new user
+	$("#btnCreateUser").click(function(e) {
+		e.preventDefault();
+		$("#newUserModal").modal();
+	});
+	$("#btnConfirmNewUser").click(function(e) {
+		e.preventDefault();
+		var username = $("#userName").val();
+		var password = $("#password").val();
+		
+		var accessContainer = $("#level").siblings(".select-control");
+		
+		var accessName = accessContainer.find(".filter-option").text(); 
+		var accessLevel = accessContainer.find(".dropdown-menu").find(".selected").data("original-index");
+		
+		var name = $("#name").val();
+		var surname = $("#surname").val();
+
+		var token = getCookie("access_token");
+		if (!token) {
+			console.log("something is missing");
+			return;
+		}
+
+		$.ajax({
+		    url: '/api/users?access_token='+token,
+		    type: 'POST',
+		    data: {username: username, name: name, surname: surname, password: password, role: {name: accessName, code: accessLevel}},
+		    success: function(data) {
+		        // Do something with the result
+		        console.log(data);
+		        window.location.reload();
+		    },
+		    error: function(err) {
+		    	console.log("error");
+		    	console.log(err);
+		    	$("#newUserModal").toggle();
+		    }
+		});
+
+	});
 });
