@@ -171,6 +171,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::befor
 .btn-text {
 	padding-left: 4px;
 }
+.action-btn-move-left {
+	margin-left: 6px;
+}
 .btn-group > .btn:first-child {
 	margin-left: 0px;
 	padding: 3px;

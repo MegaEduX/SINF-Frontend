@@ -6,7 +6,7 @@ $(document).ready(function() {
 			var id = tr.children(".idColumn").text();
 			var levelName = $(this).find(":selected").text();
 			var levelNum = $(this).val();
-			console.log($(this));
+			
 			var userName = tr.children(".usernameColumn").text();
 			
 			$("#changeLevelConfirm .access-level").text(levelName);
@@ -28,7 +28,6 @@ $(document).ready(function() {
 			console.log("something is missing");
 			return;
 		}
-		console.log(id);
 
 		$.ajax({
 		    url: '/api/users/' + id + '?access_token='+token,

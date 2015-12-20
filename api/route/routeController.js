@@ -1,10 +1,6 @@
 var Route = require('./routeModel');
 var _ = require('lodash');
 
-exports.put = function(req, res, next) {
-
-}
-
 exports.paramId = function(req, res, next, id) {
   Route.findById(id)
     .exec()
@@ -18,6 +14,16 @@ exports.paramId = function(req, res, next, id) {
     }, function(err) {
       next(err);
     });
+};
+
+exports.delete = function(req, res, next) {
+  req.IdedRoute.remove(function(err, removed) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(removed);
+    }
+  });
 };
 
 exports.put = function(req, res, next) {

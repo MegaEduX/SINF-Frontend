@@ -5,8 +5,19 @@ var checkToken = require('../api/auth/auth').checkToken;
 var User = require('../api/user/userModel');
 
 var _ = require('underscore');
-
 var request = require('request');
+
+Date.prototype.formatString = function() {
+    var yyyy = this.getFullYear().toString();
+    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+    var dd  = this.getDate().toString();
+
+    var hh = this.getHours().toString();
+    var MM = this.getMinutes().toString();
+    var ss = this.getSeconds().toString();
+    return (dd[1] ? dd : "0"+dd[0]) + "/" + (mm[1] ? mm : "0"+mm[0]) + "/" + yyyy + " " 
+        + (hh[1] ? hh : "0"+hh[0]) + ":" + (MM[1] ? MM : "0"+MM[0]) + ":" + (ss[1] ? ss : "0"+ss[0]); // padding
+};
 
 router.get('/:id', checkToken(), function(req, res, next) {
     var RouteModel = require('../api/route/routeModel');
@@ -37,10 +48,7 @@ router.get('/', checkToken(), function(req, res, next) {
                             picked++;
 
                     routes[idx].picked = picked;
-
-                    console.log("Picked:" + picked);
-
-                    console.log(routes);
+                    routes[idx].dateFormated = new Date(routes[idx].date).formatString();
                 }
 
                 res.render('routes', { title: 'Routes', level: req.user.level, routes: routes });

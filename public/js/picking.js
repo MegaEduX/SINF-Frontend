@@ -107,8 +107,7 @@ $(document).ready(function() {
 			type: "PUT",
 			data: "finished=true",
 			success: function(returnData) {
-				console.log(returnData);
-				window.location = "/routes";
+				window.location.reload();
 			}
 		});
 	});

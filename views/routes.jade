@@ -3,7 +3,7 @@ include templates/navbar
 
 mixin route(s)
 	tr
-		td #{s.date}
+		td #{s.dateFormated}
 		td #{s.objects.length}
 		if (s.finished)
 			td Finished
@@ -16,8 +16,12 @@ mixin actions(route)
 	a.btn.btn-xs.btn-primary(href='/routes/' + route, role='button' data-toggle='tooltip' data-placement='bottom' title='Route details')
 		span.glyphicon.glyphicon-edit(aria-hidden='true')
 
+	a.btn.btn-xs.btn-danger.action-btn-move-left.btn-delete-route(href="", data-route-id=route role='button' data-toggle='tooltip' data-placement='bottom' title='Delete route')
+		span.glyphicon.glyphicon-trash(aria-hidden='true')
+
 block content
 	+nav(title, level)
+	script(src='/js/routes.js')
 	div.container
 		.content-wrapper.routes-wrapper
 			h1= title
@@ -32,3 +36,18 @@ block content
 				tbody
 					each val in routes
 						+route(val)
+	
+	div#deleteConfirmModal.modal.fade(tabindex="-1" role="dialog")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button" data-dismiss="modal" aria-label="Close") 
+						span(aria-hidden="true") &times;
+						input#deletedRouteId(type="hidden") 
+					h4.modal-title Route delete
+
+				div.modal-body
+					span Are you sure that you want to delete route?
+				div.modal-footer
+					button.btn.btn-danger(type="button" data-dismiss="modal") No
+					button#btnConfirmDeleting.btn.btn-success(type="button" data-dismiss="modal") Yes

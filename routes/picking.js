@@ -105,9 +105,8 @@ function createPickingRoute(items) {
 
 router.get('/create', checkToken(), function(req, res, next) {
 
-    // WARNING - today manipulation is just for debuging purpouse
     var today = new Date();
-    today.setDate(today.getDate() - 14); // today - 14 days
+    today.setDate(today.getDate());
 
     var items = [];
     var iter = 0;
@@ -117,7 +116,6 @@ router.get('/create', checkToken(), function(req, res, next) {
     for (var i = 0; i < cart.length; i++) {
         urls.push(config.primavera.url + 'Stock/' + cart[i].item);
     }
-
     async.eachSeries(urls, function(url, next) {
         request(url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -132,9 +130,13 @@ router.get('/create', checkToken(), function(req, res, next) {
                     if (stockQuantity != NaN && stockQuantity > 0) {
                         var temp = {};
                         temp.expirationDate = new Date(stocks[i].DataValidade);
+                        /*
                         if (temp.expirationDate < today) {
+                            console.log(stocks[i].DataValidade);
+                            console.log(temp.expirationDate, "ignored");
                             continue; // just ignore this item
                         }                       
+                        */
 
                         temp.quantity = stockQuantity;
                         temp.lot = stocks[i].Lote.replace("<", "").replace(">", "");

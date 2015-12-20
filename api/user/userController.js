@@ -33,7 +33,7 @@ exports.get = function(req, res, next) {
 };
 
 exports.getOne = function(req, res, next) {
-  var user = req.user.toJson();
+  var user = req.IdedUser.toJson();
   res.json(user);
 };
 
@@ -65,7 +65,7 @@ exports.post = function(req, res, next) {
 };
 
 exports.delete = function(req, res, next) {
-  req.user.remove(function(err, removed) {
+  req.IdedUser.remove(function(err, removed) {
     if (err) {
       next(err);
     } else {
@@ -75,5 +75,5 @@ exports.delete = function(req, res, next) {
 };
 
 exports.me = function(req, res) {
-  res.json(req.user.toJson());
+  res.json(req.IdedUser.toJson());
 };
