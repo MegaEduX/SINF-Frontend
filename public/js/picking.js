@@ -108,6 +108,10 @@ $(document).ready(function() {
 			data: "finished=true",
 			success: function(returnData) {
 				window.location.reload();
+			},
+			error: function(err) {
+				console.log(err);
+				
 			}
 		});
 	});
