@@ -32,9 +32,11 @@ router.get('/:id', checkToken(), function(req, res, next) {
     });
 });
 
-router.get('/', function(req, res, next) {
+router.get('/', checkToken(), function(req, res, next) {
+    console.log("get routes");
+    console.log(req.user);
     var RouteModel = require('../api/route/routeModel');
-    
+
     User.findById(req.user._id).then(function(user) {
         RouteModel.find({username: user.username}).exec(function(err, routes) {
             if (err == null) {
