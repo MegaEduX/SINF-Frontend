@@ -32,10 +32,9 @@ router.get('/:id', checkToken(), function(req, res, next) {
     });
 });
 
-router.get('/', checkToken(), function(req, res, next) {
+router.get('/', function(req, res, next) {
     var RouteModel = require('../api/route/routeModel');
-    console.log("drp");
-    console.log(req.user);
+    
     User.findById(req.user._id).then(function(user) {
         RouteModel.find({username: user.username}).exec(function(err, routes) {
             if (err == null) {
