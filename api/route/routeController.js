@@ -73,7 +73,18 @@ exports.put = function(req, res, next) {
     });
   }
 };
-
+exports.get = function(req, res, next) {
+  Route.find({})
+    .select('-__v')
+    .exec()
+    .then(function(routes){
+      res.json(routes.map(function(route){
+        return route;
+      }));
+    }, function(err){
+      next(err);
+    });
+};
 exports.getOne = function(req, res, next) {
   res.json(req.IdedRoute);
 };
