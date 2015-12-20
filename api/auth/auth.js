@@ -74,7 +74,6 @@ exports.verifyUser = function() {
     // if password match the username
     User.findOne({username: username})
       .then(function(user) {
-        
         if (!user) {
           res.status(401).send('No user with the given username');
         } else {
