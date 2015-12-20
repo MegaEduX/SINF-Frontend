@@ -107,11 +107,11 @@ $(document).ready(function() {
 			type: "PUT",
 			data: "finished=true",
 			success: function(returnData) {
-				window.location.reload();
+				window.location.href = "/routes";
 			},
 			error: function(err) {
 				console.log(err);
-				
+
 			}
 		});
 	});
