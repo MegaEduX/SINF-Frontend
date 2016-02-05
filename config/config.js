@@ -5,11 +5,10 @@ var config = {
   },
   seedData: false,
   primavera: {
-  	url: (process.env.PRIMAVERA_URI ? process.env.PRIMAVERA_URI : 'http://184aba86.ngrok.io/api/')
+  	url: (process.env.PRIMAVERA_URI ? process.env.PRIMAVERA_URI : 'http://ce6fe0db.ngrok.io/api/')
   },
   db: {
-    	//url: 'mongodb://heroku_n275hh7p:fs6oc1uqticprchfc58q8h89o9@ds033097.mongolab.com:33097/heroku_n275hh7p'
-    url: (process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://localhost/sinf')
+    url: (process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://sinf:3cmYw6WRBZFKnv@glados.edr.io/sinf?ssl=true')
   }
 };
 
