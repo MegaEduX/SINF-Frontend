@@ -1,12 +1,13 @@
 {
-      "apps" : [{
-        "name"        : "sinf-primavera",
-        "script"      : "bin/www",
-        "watch"       : "../",
-        "log_date_format"  : "YYYY-MM-DD HH:mm Z",
-	"env" : {
-		"MONGOLAB_URI": "mongodb://sinf:3cmYw6WRBZFKnv@glados.edr.io/sinf?ssl=true",
-		"PRIMAVERA_URI": "http://ce6fe0db.ngrok.io/api/"
-	}
-      }]
+  "apps": [{
+    "name": "sinf-primavera",
+    "script": "bin/www",
+    "watch": "../",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "MONGOLAB_URI": "mongodb://sinf:3cmYw6WRBZFKnv@glados.edr.io/sinf?ssl=true",
+      "PRIMAVERA_URI": "http://ce6fe0db.ngrok.io/api/",
+      "PORT": 3250
+    }
+  }]
 }
