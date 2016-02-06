@@ -3,7 +3,7 @@ var config = {
   secrets: {
     jwt: process.env.JWT || 'gumball'
   },
-  seedData: true,
+  seedData: false,
   primavera: {
   	url: (process.env.PRIMAVERA_URI ? process.env.PRIMAVERA_URI : 'http://ce6fe0db.ngrok.io/api/')
   },
