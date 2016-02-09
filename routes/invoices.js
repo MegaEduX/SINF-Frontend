@@ -60,7 +60,7 @@ router.post('/:numDoc', checkToken(), function(req, res, next) {
 });
 
 router.get('/json', checkToken(), function(req, res, next) {
-    request(config.primavera.url + 'Sales', function (error, response, body) {
+    request(config.primavera.url + 'Invoices', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var obj = JSON.parse(body);
 
