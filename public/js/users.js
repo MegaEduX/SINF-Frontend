@@ -47,6 +47,7 @@ $(document).ready(function() {
 		$("#newUserModal").modal();
 	});
 	$("#btnConfirmNewUser").click(function(e) {
+		console.log("confirm new users");
 		e.preventDefault();
 		var username = $("#userName").val();
 		var password = $("#password").val();
@@ -64,13 +65,11 @@ $(document).ready(function() {
 			console.log("something is missing");
 			return;
 		}
-
 		$.ajax({
 		    url: '/api/users?access_token='+token,
 		    type: 'POST',
 		    data: {username: username, name: name, surname: surname, password: password, role: {name: accessName, code: accessLevel}},
 		    success: function(data) {
-		        // Do something with the result
 		        console.log(data);
 		        window.location.reload();
 		    },
