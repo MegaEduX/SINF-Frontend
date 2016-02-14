@@ -5,7 +5,7 @@ var config = {
   },
   seedData: false,
   primavera: {
-  	url: (process.env.PRIMAVERA_URI ? process.env.PRIMAVERA_URI : 'http://ce6fe0db.ngrok.io/api/')
+  	url: (process.env.PRIMAVERA_URI ? process.env.PRIMAVERA_URI : 'http://9fa30986.ngrok.io/api/')
   },
   db: {
     url: (process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://sinf:3cmYw6WRBZFKnv@glados.edr.io/sinf?ssl=true')
