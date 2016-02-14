@@ -5,13 +5,11 @@ var bcrypt = require('bcrypt');
 var RoleSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   code: {
     type: Number,
     min: 0,
-    unique: 0,
     required: true
   }
 
@@ -36,7 +34,7 @@ var UserSchema = new Schema({
   },
   role: {
     type: RoleSchema,
-    required: true
+    required: false
   }
 
 });
@@ -45,6 +43,7 @@ UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) return next();
 
   this.password = this.encryptPassword(this.password);
+  console.log(this);
   next();
 })
 

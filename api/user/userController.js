@@ -54,10 +54,14 @@ exports.put = function(req, res, next) {
 };
 
 exports.post = function(req, res, next) {
+  req.body.role.code = Number(req.body.role.code);
   var newUser = new User(req.body);
-
+  
   newUser.save(function(err, user) {
-    if(err) { return next(err);}
+    if(err) { 
+      console.log("error");
+      return next(err);
+    }
 
     var token = signToken(user._id);
     res.json({token: token});
