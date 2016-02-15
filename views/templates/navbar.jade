@@ -76,6 +76,7 @@ mixin nav(active, level)
                 a(href='/picking') 
                   span.picking-nav-icon.hide-on-tablet-view.glyphicon.glyphicon-list-alt(data-toggle='tooltip' data-placement='bottom' title='Picking items') 
                   span.picking-item-wrapper (#[span(id='pickingItemCount') 0])
+                  span.show-on-tablet-view  Picking list
           li
             a#userProfileBtn(href='/user')
               span.hide-on-tablet-view.glyphicon.glyphicon-user(data-toggle='tooltip' data-placement='bottom' title='User profile')
@@ -83,7 +84,7 @@ mixin nav(active, level)
           li
             a#logoutBtn(href='#')
               span.hide-on-tablet-view.glyphicon.glyphicon-log-out(data-toggle='tooltip' data-placement='bottom' title='Logout')
-              span.show-on-tablet-view Log Out
+              span.show-on-tablet-view Log out
 
 mixin navGuest(active)
   .navbar.navbar-default.navbar-fixed-top(role='navigation')

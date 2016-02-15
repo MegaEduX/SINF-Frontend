@@ -66,6 +66,14 @@ a {
 	float: left;
 }
 
+.navbar-nav {
+	margin-bottom: 0px !important;
+}
+.navbar-right {
+	margin-top: 0px !important;
+	margin-bottom: 9.75px !important;
+}  	
+
 /*
  *	LOGIN
  */
