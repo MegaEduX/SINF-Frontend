@@ -70,6 +70,8 @@ function generateInvoice(sale) {
 
             $("#generateInvoice-" + sale).hide();
             $("#generated-" + sale).show();
+        } else if (ajax.readyState == 4 && ajax.status != 200) {
+            alert('There was a problem creating the requested invoice. The Primavera server returned an invalid response.');
         }
     };
 
