@@ -197,7 +197,7 @@ router.get('/:client', checkToken(), function(req, res, next) {
 
             parseDates(filterObj);
 
-            res.render('sales', { title: 'Sales', level: req.user.level, sales: filterObj });
+            res.render('sales', { title: 'Sales to ' + req.params.client, level: req.user.level, sales: filterObj });
         } else {
             var testObj = [
                 {"Entidade": "INFORSHOW", "Data": "2014-04-15T00:00:00", "TotalMerc": 526.8, "Serie": "A", "NumDoc": 12, "LinhasDoc" : [{"CodArtigo": "A0006", "DescArtigo": "Secretária", "DataEntrega": "2014-04-15T00:00:00", "Quantidade": 30, "Unidade": "UN", "Desconto": 0, "PrecoUnitario": 250}]},
@@ -217,7 +217,7 @@ router.get('/:client', checkToken(), function(req, res, next) {
 
             parseDates(filterObj);
 
-            res.render('sales', { title: 'Sales', level: req.user.level, sales: filterObj });
+            res.render('sales', { title: 'Sales for', level: req.user.level, sales: filterObj });
         }
     });
 });
