@@ -5,8 +5,8 @@
     "watch": "../",
     "log_date_format": "YYYY-MM-DD HH:mm Z",
     "env": {
-      "MONGOLAB_URI": "mongodb://sinf:3cmYw6WRBZFKnv@glados.edr.io/sinf?ssl=true",
-      "PRIMAVERA_URI": "http://9fa30986.ngrok.io/api/",
+      "MONGOLAB_URI": "",
+      "PRIMAVERA_URI": "",
       "PORT": 3250
     }
   }]
