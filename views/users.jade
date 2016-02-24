@@ -1,6 +1,10 @@
 extends layout
 include templates/navbar
 
+mixin actions(userId, userName)
+	a.btn.btn-xs.btn-danger.action-btn-move-left.btn-delete-user(href="", data-user-id=userId data-user-name=userName role='button' data-toggle='tooltip' data-placement='bottom' title='Delete user')
+		span.glyphicon.glyphicon-trash(aria-hidden='true')
+
 mixin user(u)
 	tr(data-toggle="collapse", data-target=s, class="accordion-toggle")
 		td.hidden.idColumn #{u._id}
@@ -14,6 +18,9 @@ mixin user(u)
 						option(value="#{l.code}" selected="") #{l.name}
 					else
 						option(value="#{l.code}") #{l.name}
+		td
+			+actions(u._id, u.username)
+
 
 block content
 	script(src='/js/users.js')
@@ -29,6 +36,7 @@ block content
 						th Name
 						th Surname
 						th Access level
+						th Action
 				tbody
 					each user in users
 						+user(user)
@@ -86,4 +94,21 @@ block content
 					div.modal-footer
 						button.btn.btn-danger(type="button" data-dismiss="modal") Cancel
 						button#btnConfirmNewUser.btn.btn-success(type="submit") Create
+
+	div#deleteConfirmModal.modal.fade(tabindex="-1" role="dialog")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button" data-dismiss="modal" aria-label="Close") 
+						span(aria-hidden="true") &times;
+						input#deletedUserId(type="hidden") 
+					h4.modal-title Delete user
+
+				div.modal-body
+					span Are you sure that you want to delete user
+					b#deletedUserName
+					span ?
+				div.modal-footer
+					button.btn.btn-danger(type="button" data-dismiss="modal") No
+					button#btnConfirmDeleting.btn.btn-success(type="button" data-dismiss="modal") Yes
 

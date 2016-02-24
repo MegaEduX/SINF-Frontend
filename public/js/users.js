@@ -1,3 +1,8 @@
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 $(document).ready(function() {
 	$(".select-control").selectpicker();
 	$(".user-level-control").each(function() {
@@ -79,6 +84,42 @@ $(document).ready(function() {
 		    	$("#newUserModal").toggle();
 		    }
 		});
-
 	});
+
+	// show modal for deleting a user
+	$(".btn-delete-user").click(function(e) {
+        e.preventDefault();
+        $("#deletedUserId").val($(this).data("user-id"));
+        console.log($(this).data("user-name"));
+        $("#deletedUserName").html(" " + $(this).data("user-name"));
+        $("#deleteConfirmModal").modal();
+    });
+
+    // delete user
+    $("#btnConfirmDeleting").click(function(e) {
+    	e.preventDefault();
+        var id = $("#deletedUserId").val();
+        id = id.replaceAll('"', '');
+        console.log(id);
+    	var token = getCookie("access_token");
+		if (!token || !id) {
+			console.log("something is missing");
+			return;
+		}
+		console.log(token);
+        console.log('/api/users/' + id + '?access_token='+token);
+        $.ajax({
+            url: '/api/users/' + id + '?access_token='+token,
+            type: 'DELETE',
+
+            success: function(data) {
+                console.log(data);
+                window.location.reload();
+            },
+            error: function(err) {
+                console.log("error");
+                console.log(err);
+            }
+        });
+    });
 });

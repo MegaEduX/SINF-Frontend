@@ -24,7 +24,6 @@ router.get('/:id', checkToken(), function(req, res, next) {
 
     RouteModel.findById(req.params.id, function(err, route) {
         if (err == null) {
-            console.log(route);
             res.render('route', {title: 'Route', level: req.user.level, route: route});
         } else {
             //  Handle Error
@@ -33,8 +32,6 @@ router.get('/:id', checkToken(), function(req, res, next) {
 });
 
 router.get('/', checkToken(), function(req, res, next) {
-    console.log("get routes");
-    console.log(req.user);
     var RouteModel = require('../api/route/routeModel');
 
     User.findById(req.user._id).then(function(user) {

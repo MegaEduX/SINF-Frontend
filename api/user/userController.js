@@ -39,9 +39,7 @@ exports.getOne = function(req, res, next) {
 
 exports.put = function(req, res, next) {
   var user = req.IdedUser;
-
   var update = req.body;
-
   _.merge(user, update);
 
   user.save(function(err, saved) {
@@ -59,7 +57,6 @@ exports.post = function(req, res, next) {
   
   newUser.save(function(err, user) {
     if(err) { 
-      console.log("error");
       return next(err);
     }
 
@@ -69,6 +66,8 @@ exports.post = function(req, res, next) {
 };
 
 exports.delete = function(req, res, next) {
+  console.log("delete user");
+  console.log(req.IdedUser);
   req.IdedUser.remove(function(err, removed) {
     if (err) {
       next(err);

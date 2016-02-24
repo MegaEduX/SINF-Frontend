@@ -21,7 +21,6 @@ exports.decodeToken = function() {
 exports.checkToken = function() {
   return function(req, res, next) {
     // look for a token in cookies
-    console.log(req.cookies);
     if (Object.getOwnPropertyNames(req.cookies).length > 0 && req.cookies.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer ' + req.cookies.access_token;
     } else {

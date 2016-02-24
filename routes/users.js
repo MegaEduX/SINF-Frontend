@@ -11,7 +11,6 @@ router.get('/', checkToken(), function(req, res, next) {
 	    .select('-__v')
 	    .exec()
 	    .then(function(users){
-	    	console.log(users);
 	      res.render('users', { title: 'Users', level: req.user.level, users: users, levels: levels });
 	    }, function(err){
 	    	res.render('users', { title: 'Users', level: req.user.level, error: err, levels: levels });		  
